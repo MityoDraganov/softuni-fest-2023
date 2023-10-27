@@ -1,41 +1,47 @@
 const { getById } = require('../services/products');
+const { createSession } = require('../services/stripe');
+const coinbase = require('../services/coinbase');
+// const opennode = require('../services/opennode');
 
-require('dotenv').config();
 const router = require('express').Router();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
-const success_url = process.env.SUCCESS_URL;
-const cancel_url = process.env.CANCEL_URL;
 
 
-router.post('/pay/:id', async(req, res) => {
-    const product = await getById(req.params.id);
-    try{
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
-            mode: 'payment',
-            line_items: [
-                {
-                    price_data: {
-                        currency: 'usd',
-                        product_data: {
-                            name: product.name,
-                        },
-                        unit_amount: product.price * 100,
-                    },
-                    quantity: 1,
-                },
-            ],
-            success_url: success_url,
-            cancel_url: cancel_url,
-        });
-        res.json({ id: session.id, url: session.url });
+router.post('/pay/:id', async (req, res) => {
+    try {
+        const product = await getById(req.params.id);
+        const session = await createSession(product);
+        res.json({ id: session.id`1`, url: session.url });
 
-    }catch(e){
+    } catch (e) {
         console.log(e);
-        res.status(400).json({message: 'Something went wrong'});
+        res.status(400).json({ message: 'Something went wrong' });
     }
 }
 )
+
+router.post('/pay/coinbase/:id', async (req, res) => {
+    try {
+        const product = await getById(req.params.id);
+        const charge = await coinbase.createCharge(product);
+        res.json({ id: charge.id, url: charge.hosted_url });
+
+    } catch (e) {
+        console.log(e);
+        res.status(400).json({ message: 'Something went wrong' });
+    }
+});
+
+// router.post('/pay/opennode/:id', async (req, res) => {
+//     try {
+//         const product = await getById(req.params.id);
+//         const charge = await opennode.createCharge(product);
+//         res.json({url: charge});
+
+//     } catch (e) {
+//         console.log(e);
+//         res.status(400).json({ message: 'Something went wrong' });
+//     }
+// });
+
 
 module.exports = router;

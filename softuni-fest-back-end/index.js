@@ -1,16 +1,16 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
-
 const cors = require('cors');
+
 const usersController = require('./controllers/users');
 const businessController = require('./controllers/business');
 const productsController = require('./controllers/products');
-// const testController = require('./controllers/test');
 const paymentController = require('./controllers/payment');
 const auth = require('./middlewares/auth');
 
-const database = "mongodb://127.0.0.1:27017/payment-system";
-
+const database = process.env.DATABASE || 'mongodb://localhost:27017/ecommerce';
 const PORT = process.env.PORT || 3030;
 
 async function start() {
@@ -46,9 +46,6 @@ async function start() {
     app.listen(PORT, () => {
         console.log(`Server started on port ${PORT}`);
     });
-    // app.listen(PORT, '0.0.0.0', () => {
-    //     console.log(`Server started on port ${PORT}`);
-    // });
 }
 
 start()
