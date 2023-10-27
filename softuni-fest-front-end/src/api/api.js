@@ -26,6 +26,7 @@ const request = async (method, url, data) => {
     }
 
     try {
+     
         const res = await fetch(host + url, options);
         const data = await res.json();
         if (!res.ok) {

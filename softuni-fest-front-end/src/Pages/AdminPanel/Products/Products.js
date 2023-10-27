@@ -4,19 +4,17 @@ import { ProductModal } from "../../../components/ProductModal/ProductModal";
 import { createProduct } from "../../../services/requests";
 
 
+
 export const Products = () => {
 
     const [isOpen, setIsOpen] = useState(false)
     const [products, setProducts] = useState([])
 
-    useEffect(() => {
-        
-    }, [])
 
     const [values, setValues] = useState({
-        "name": "",
-        "description": "",
-        "price": 0
+        name: "",
+        description: "",
+        price: 0
     })
 
     const onChangeHandler = (e) => {
@@ -27,25 +25,11 @@ export const Products = () => {
 
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        // Convert price to a number
-        const parsedPrice = Number(values.price);
-    
-        // Check if parsedPrice is a valid number
-        if (!isNaN(parsedPrice)) {
-            // Update values with parsedPrice
-            setValues(prevValues => ({ ...prevValues, price: parsedPrice }));
-    
-            // Submit the form
-            const data = await createProduct({ ...values, price: parsedPrice });
-            console.log(data);
-        } else {
-            console.error('Invalid price value. Please enter a valid number.');
-        }
+    const createHandler = async (e) => {
+        e.preventDefault()
+        console.log("clicked");
+        const data = await createProduct(values)
     }
-
 
     return (
         <>
@@ -71,7 +55,7 @@ export const Products = () => {
                 </table>
             </div>
 
-            {isOpen && <ProductModal setIsOpen={setIsOpen} values={values} handleSubmit={handleSubmit} onChangeHandler={onChangeHandler}/>}
+            {isOpen && <ProductModal setIsOpen={setIsOpen} values={values} handleSubmit={createHandler} onChangeHandler={onChangeHandler}/>}
         </>
     );
 };

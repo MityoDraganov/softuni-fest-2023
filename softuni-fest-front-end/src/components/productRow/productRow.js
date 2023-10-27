@@ -6,7 +6,12 @@ export const productRow = (product) => {
             <td>{product.name}</td>
             <td>{product.description}</td>
             <td>{product.price}</td>
-            <td>{product.actions}</td>
+            <td>
+                <div>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </div>
+            </td>
         </tr>
     )
 }
