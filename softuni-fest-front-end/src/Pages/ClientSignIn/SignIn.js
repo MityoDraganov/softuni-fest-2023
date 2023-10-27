@@ -5,21 +5,10 @@ const SignIn = () => {
     return (
         <div className={styles.container}>
             <h1>Sign In</h1>
-
-            <div className={styles.flex}>
-                <div className={styles.company}>
-                    <label>
-                        Company Name
-                    </label>
-                    <input type="text" name="company" />
-                </div>
-                <div className={styles.email}>
-                    <label>
-                        Email
-                    </label>
-                    <input type="email" name="email" />
-                </div>
-            </div>
+            <label>
+                Email
+            </label>
+            <input type="email" name="email" />
             <label>
                 Password
             </label>

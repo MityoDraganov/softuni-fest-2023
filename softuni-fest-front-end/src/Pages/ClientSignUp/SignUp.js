@@ -10,13 +10,13 @@ const SignUp = () => {
                     <label>
                         First Name
                     </label>
-                    <input type="text" name="company" />
+                    <input type="text" name="firstname" />
                 </div>
                 <div className={styles.name}>
                     <label>
                         Last Name
                     </label>
-                    <input type="text" name="firstName" />
+                    <input type="text" name="lastname" />
                 </div>
             </div>
 
