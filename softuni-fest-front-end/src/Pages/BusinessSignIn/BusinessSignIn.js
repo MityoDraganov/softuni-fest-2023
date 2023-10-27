@@ -18,11 +18,6 @@ const BusinessSignIn = () => {
             <form onSubmit={handleSubmit}>
                 <h1>Business Sign In</h1>
                 <label>
-                    <Link to={"/users/login"}>
-                        Client Sign In
-                    </Link>
-                </label>
-                <label>
                     Email
                 </label>
                 <input type="email" name="email" value={credentials.email} onChange={(e) => setCredentials(state => ({ ...state, email: e.target.value }))} />
@@ -32,6 +27,11 @@ const BusinessSignIn = () => {
                 </label>
                 <button type='submit'>Sign In</button>
             </form>
+            <label>
+                <Link to={"/business/register"} className={styles.label_business}>
+                    Business Sign In
+                </Link>
+            </label>
         </div>
     );
 };

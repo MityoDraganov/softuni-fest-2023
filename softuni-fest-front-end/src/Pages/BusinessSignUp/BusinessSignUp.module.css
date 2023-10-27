@@ -52,3 +52,8 @@ h1{
     display: flex;
     justify-content: space-between;
 }
+
+.label_business {
+    text-decoration: none;
+    color: blue;
+  }
