@@ -11,7 +11,7 @@ const SignIn = () => {
         e.preventDefault()
         const data = await loginUser(credentials)
         setAccessData(data)
-        localStorage.setItem('access_info', JSON.stringify(credentials));
+        localStorage.setItem('access_info', JSON.stringify(data));
     }
     return (
         <div className={styles.container}>

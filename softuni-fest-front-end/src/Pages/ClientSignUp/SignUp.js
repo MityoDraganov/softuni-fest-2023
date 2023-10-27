@@ -8,9 +8,11 @@ const SignUp = () => {
     const [credentials, setCredentials] = useState({ firstName: "", lastName: "", email: "", password: "", rePassword: "" });
     const handleSubmit = async (e) => {
         e.preventDefault()
+        console.log(credentials)
         const data = await registerUser(credentials)
+        console.log(data)
         setAccessData(data)
-        localStorage.setItem('access_info', JSON.stringify(credentials));
+        localStorage.setItem('access_info', JSON.stringify(data));
     }
     return (
         <div className={styles.container}>
@@ -18,7 +20,7 @@ const SignUp = () => {
                 <h1>Sign Up</h1>
                 <label>
                     <Link to={"/business/register"}>
-                        Business Sign Up
+                        Business Sign In
                     </Link>
                 </label>
                 <div className={styles.flex}>
