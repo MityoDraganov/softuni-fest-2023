@@ -51,7 +51,7 @@ export const ProductModal = ({ CloseModal, mode, onChangeHandler, values, handle
                         ?
                         <button type="submit">Create</button>
                         :
-                        <button type="submit">Edit</button>
+                        <button type="submit" >Edit</button>
                     }
                 </div>
             </form>
