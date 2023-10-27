@@ -1,4 +1,4 @@
-const host = 'https://quiz-app-back-end.vercel.app/'
+const host = 'http://localhost:3030'
 
 // const host = process.env.NODE_ENV === 'development' ? "http://localhost:3030/": "https://quiz-app-back-end.vercel.app/"
 
