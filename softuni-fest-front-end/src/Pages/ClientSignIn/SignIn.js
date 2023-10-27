@@ -8,7 +8,7 @@ const SignIn = () => {
             <h1>Sign In</h1>
             <label>
                 <Link to={"/business/login"}>
-                    Client Sign Up
+                    Business Sign Up
                 </Link>
             </label>
             <label>

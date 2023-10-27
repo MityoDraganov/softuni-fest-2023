@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
-
 export const AuthContext = createContext();
 
 export function AuthProvider(props) {
+    
     const [accessData, setAccessData] = useState({
         "isBusiness": true
     });
