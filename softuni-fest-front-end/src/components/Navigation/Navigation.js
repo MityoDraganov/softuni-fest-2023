@@ -7,6 +7,14 @@ import { AuthContext } from "../../contexts/AuthContext";
 import styles from "./Navigation.module.css";
 
 export const Navigation = () => {
+    const {setAccessData} = useContext(AuthContext)
+
+    const handleLogout = (e) => {
+        e.preventDefault()
+        setAccessData({isBusiness: false})
+        localStorage.removeItem('access_info')
+    }
+
     const { pathname } = useLocation();
 
     const { accessData } = useContext(AuthContext)
@@ -20,14 +28,12 @@ export const Navigation = () => {
         accessData.isBusiness ? (
             <nav className={styles.container}>
                 <ul>
-                    <li className={isActive("/business/register")}>
-                        <Link to="/business/register">Register</Link>
-                    </li>
-                    <li className={isActive("/business/login")}>
-                        <Link to="/business/login">Login</Link>
-                    </li>
                     <li className={isActive("/business/products")}>
                         <Link to="/business/products">Products</Link>
+                    </li>
+
+                    <li>
+                        <a onClick={handleLogout}>Logout</a>
                     </li>
                 </ul>
                 <div>
