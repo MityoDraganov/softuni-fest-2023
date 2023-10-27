@@ -1,6 +1,7 @@
 
 import styles from "./ProductModal.module.css"
 import { useState } from "react"
+import { createProduct } from "../../services/requests"
 
 export const ProductModal = ({ setIsOpen }) => {
 
@@ -21,7 +22,9 @@ export const ProductModal = ({ setIsOpen }) => {
     const handleCreateProduct = (e) => {
         e.preventDefault()
 
-        console.log(values);
+        const data = createProduct(values)
+
+        console.log(data);
     }
 
     return (

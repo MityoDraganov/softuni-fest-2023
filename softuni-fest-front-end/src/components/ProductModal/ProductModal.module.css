@@ -14,9 +14,9 @@
 }
 
 .product-form textarea {
-    width: 100%;
+    width: 102%;
     height: 100%;
-    padding: 1.5% 2%;
+    padding: 1.5% 1% 1.5% 2%;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -32,4 +32,14 @@
 
 .modal-actions .action-deny{
     background-color: #ef233c;
+}
+
+input {
+    display: block;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    margin-top: 5px;
+    padding: 1% 0 1% 2% !important
 }
