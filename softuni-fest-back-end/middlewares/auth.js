@@ -1,4 +1,4 @@
-const { verifySession } = require('../services/verifySession');
+const { verifySession } = require('../utils/verifySession');
 
 module.exports = () => (req, res, next) => {
     const token = req.headers['x-authorization'];

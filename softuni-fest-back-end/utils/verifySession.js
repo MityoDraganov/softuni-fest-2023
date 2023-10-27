@@ -1,9 +1,11 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = 'asoiducan93284c9rew';
+const JWT_SECRET = process.env.JWT_SECRET;
+const blacklist = [];
 function verifySession(token) {
-    // if (blacklist.includes(token)) {
-    //     throw new Error('Token is invalidated');
-    // }
+    if (blacklist.includes(token)) {
+        throw new Error('Token is invalidated');
+    }
 
     const payload = jwt.verify(token, JWT_SECRET);
 
@@ -25,5 +27,6 @@ function verifySession(token) {
 }
 
 module.exports = {
+    blacklist,
     verifySession,
 };

@@ -1,11 +1,9 @@
+require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const JWT_SECRET = process.env.JWT_SECRET;
 const Business = require('../models/Business');
-
-
-const JWT_SECRET = 'asoiducan93284c9rew';
-const blacklist = [];
+const blacklist = require('../utils/verifySession').blacklist;
 
 async function register(email, companyName, password) {
     const existing = await Business.findOne({

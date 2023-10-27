@@ -9,21 +9,21 @@ import { Navigation } from './components/Navigation/Navigation';
 //business imports
 import { Products } from './Pages/AdminPanel/Products';
 import SignUp from './Pages/ClientSignUp/SignUp';
-
+import SignIn from './Pages/ClientSignIn/SignIn';
+import BusinessSignIn from './Pages/BusinessSignIn/BusinessSignIn';
+import BusinessSignUp from './Pages/BusinessSignUp/BusinessSignUp';
 
 function App() {
   return (
     <>
       <Navigation />
       <Routes>
-
-        //user routes
         <Route path="/users/register" element={<SignUp />} />
         {/* //<Route path="/users/login" element={} />
 
-        //business routes
-        //<Route path="/business/login" element={} />
-        //<Route path="/business/register" element={} /> */}
+        //bussiness routes
+        //<Route path="/bussiness/login" element={} />
+        //<Route path="/bussiness/register" element={} /> */}
 
         <Route path="/business/products" element={<Products />} />
       </Routes>

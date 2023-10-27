@@ -1,20 +1,12 @@
-body {
-    height: 100vh; /* Set body height to viewport height */
-    margin: 0; /* Remove default margin */
-}
-
-.container {
+.container{
     background-color: #ffffff;
     width: 80%;
     margin: 2% auto;
     padding: 0.5% 2%;
     border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
-.container ul {
+.container ul{
     list-style-type: none;
     display: flex;
     flex-direction: row;
@@ -28,29 +20,6 @@ li a {
     color: #5f6e83;
 }
 
-.active a {
+.container ul li a.active {
     color: #3282d5;
-    text-decoration: underline;
-    border-radius: 5px;
-}
-
-.container div {
-    width: 40%;
-    display: flex;
-    flex-direction: row;
-    align-items: center; /* Vertically center content */
-}
-
-.pfp-container {
-    height: 100%; /* Set height to 100% of parent container */
-    display: flex;
-    align-items: center;
-
-}
-
-.pfp {
-    width: 20%;
-
-    object-fit: cover;
-    border-radius: 50%;
 }
