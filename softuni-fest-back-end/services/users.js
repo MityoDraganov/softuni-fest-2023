@@ -47,6 +47,7 @@ function logout(token) {
 
 function createSession(user) {
     return {
+        isBusiness: false,
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
@@ -54,6 +55,8 @@ function createSession(user) {
         accessToken: jwt.sign(
             {
                 email: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName,
                 _id: user._id,
             },
             JWT_SECRET
