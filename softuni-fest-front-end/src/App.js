@@ -6,7 +6,7 @@ import { Navigation } from './components/Navigation/Navigation';
 
 //user imports
 
-//bussiness imports
+//business imports
 import { Products } from './Pages/AdminPanel/Products';
 import SignUp from './Pages/ClientSignUp/SignUp';
 import SignIn from './Pages/ClientSignIn/SignIn';
@@ -19,11 +19,11 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/users/register" element={<SignUp />} />
-        <Route path="/users/login" element={<SignIn />} />
-        
+        {/* //<Route path="/users/login" element={} />
 
-        <Route path="/business/login" element={<BusinessSignIn/>} />
-        <Route path="/business/register" element={<BusinessSignUp/>} />
+        //bussiness routes
+        //<Route path="/bussiness/login" element={} />
+        //<Route path="/bussiness/register" element={} /> */}
 
         <Route path="/business/products" element={<Products />} />
       </Routes>
