@@ -11,6 +11,7 @@ function verifySession(token) {
 
     if (payload.companyName) {
         return {
+            isBusiness: true,
             email: payload.email,
             companyName: payload.companyName,
             _id: payload._id,
@@ -18,6 +19,7 @@ function verifySession(token) {
         };
     }else{
     return {
+        isBusiness: false,
         email: payload.email,
         firstName: payload.firstName,
         lastName: payload.lastName,

@@ -5,6 +5,7 @@ module.exports = () => (req, res, next) => {
     try {
         if (token) {
             const userData = verifySession(token);
+            console.log(userData);
             if(userData.companyName){
                 req.business = true;
             }

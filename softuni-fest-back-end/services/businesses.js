@@ -46,6 +46,7 @@ function logout(token) {
 
 function createSession(business) {
     return {
+        isBusiness: true,
         email: business.email,
         companyName: business.companyName,
         _id: business._id,

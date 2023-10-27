@@ -5,7 +5,8 @@ const cors = require('cors');
 const usersController = require('./controllers/users');
 const businessController = require('./controllers/business');
 const productsController = require('./controllers/products');
-const testController = require('./controllers/test');
+// const testController = require('./controllers/test');
+const paymentController = require('./controllers/payment');
 const auth = require('./middlewares/auth');
 
 const database = "mongodb://127.0.0.1:27017/payment-system";
@@ -36,7 +37,7 @@ async function start() {
     app.use('/businesses', businessController);
     app.use('/products', productsController)
     app.use('/users', usersController);
-    app.use('/test', testController)
+    app.use('/invoice', paymentController)
 
     app.get('/', (req, res) =>
         res.json({ message: 'REST service operational' })
