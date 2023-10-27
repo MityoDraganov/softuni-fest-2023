@@ -1,4 +1,4 @@
-import './productRow.css';
+import styles from "./productRow.module.css"
 
 export const productRow = (product) => {
     return(
