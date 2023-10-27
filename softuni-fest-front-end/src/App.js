@@ -7,7 +7,7 @@ import { Navigation } from './components/Navigation/Navigation';
 //user imports
 
 //business imports
-import { Products } from './Pages/AdminPanel/Products';
+import { Products } from './Pages/AdminPanel/Products/Products';
 import SignUp from './Pages/ClientSignUp/SignUp';
 import SignIn from './Pages/ClientSignIn/SignIn';
 import BusinessSignIn from './Pages/BusinessSignIn/BusinessSignIn';
