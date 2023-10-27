@@ -19,11 +19,6 @@ const SignIn = () => {
 
                 <h1>Sign In</h1>
                 <label>
-                    <Link to={"/business/login"}>
-                        Business Sign Up
-                    </Link>
-                </label>
-                <label>
                     Email
                 </label>
                 <input type="email" name="email"  value={credentials.email} onChange={(e) => setCredentials(state => ({...state, email: e.target.value}))}/>
@@ -35,6 +30,11 @@ const SignIn = () => {
                     Sign Up
                 </button>
             </form>
+            <label>
+                <Link to={"/business/register"} className={styles.label_business}>
+                    Business Sign In
+                </Link>
+            </label>
         </div>
     );
 };

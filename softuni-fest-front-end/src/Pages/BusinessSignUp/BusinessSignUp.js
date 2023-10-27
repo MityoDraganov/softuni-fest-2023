@@ -17,39 +17,39 @@ const BusinessSignUp = () => {
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <h1>Business Sign Up</h1>
-        <label>
-          <Link to={"/users/register"}>
-            Client Sign Up
-          </Link>
-        </label>
         <div className={styles.flex}>
           <div className={styles.company}>
             <label>
               Company Name
             </label>
-            <input type="text" name="company" value={credentials.companyName} onChange={(e)=> setCredentials(state => ({...state, companyName: e.target.value}))}/>
+            <input type="text" name="company" value={credentials.companyName} onChange={(e) => setCredentials(state => ({ ...state, companyName: e.target.value }))} />
           </div>
           <div className={styles.email}>
             <label>
               Email
             </label>
-            <input type="email" name="email" value={credentials.email} onChange={(e)=> setCredentials(state => ({...state, email: e.target.value}))}/>
+            <input type="email" name="email" value={credentials.email} onChange={(e) => setCredentials(state => ({ ...state, email: e.target.value }))} />
           </div>
         </div>
 
         <label>
           Password
-          <input type="password" name="password" value={credentials.password} onChange={(e)=> setCredentials(state => ({...state, password: e.target.value}))}/>
+          <input type="password" name="password" value={credentials.password} onChange={(e) => setCredentials(state => ({ ...state, password: e.target.value }))} />
         </label>
 
         <label>
           Re-enter Password
-          <input type="password" name="rePassword" value={credentials.rePassword} onChange={(e)=> setCredentials(state => ({...state, rePassword: e.target.value}))}/>
+          <input type="password" name="rePassword" value={credentials.rePassword} onChange={(e) => setCredentials(state => ({ ...state, rePassword: e.target.value }))} />
         </label>
         <div className={styles.submit}>
           <button type="submit">Sign Up</button>
         </div>
       </form>
+      <label>
+        <Link to={"/business/register"} className={styles.label_business}>
+          Business Sign In
+        </Link>
+      </label>
     </div>
   );
 };

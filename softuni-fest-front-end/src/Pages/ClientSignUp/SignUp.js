@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { registerUser } from '../../services/requests';
 const SignUp = () => {
-    const {setAccessData} = useContext(AuthContext)
+    const { setAccessData } = useContext(AuthContext)
     const [credentials, setCredentials] = useState({ firstName: "", lastName: "", email: "", password: "", rePassword: "" });
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -18,11 +18,6 @@ const SignUp = () => {
         <div className={styles.container}>
             <form onSubmit={handleSubmit}>
                 <h1>Sign Up</h1>
-                <label>
-                    <Link to={"/business/register"}>
-                        Business Sign In
-                    </Link>
-                </label>
                 <div className={styles.flex}>
                     <div className={styles.company}>
                         <label>
@@ -67,6 +62,11 @@ const SignUp = () => {
                     Sign Up
                 </button>
             </form>
+            <label>
+                <Link to={"/business/register"} className={styles.label_business}>
+                    Business Sign In
+                </Link>
+            </label>
         </div>
     );
 };
