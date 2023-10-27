@@ -10,6 +10,7 @@ const SignUp = () => {
         e.preventDefault()
         const data = await registerUser(credentials)
         setAccessData(data)
+        localStorage.setItem('access_info', JSON.stringify(credentials));
     }
     return (
         <div className={styles.container}>
