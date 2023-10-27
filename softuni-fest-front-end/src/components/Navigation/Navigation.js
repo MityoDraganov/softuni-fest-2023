@@ -33,7 +33,7 @@ export const Navigation = () => {
                     </li>
                 </ul>
 
-                <ul>
+                <ul className={styles["nav-auth"]}>
 
                     <li>
                         <a onClick={handleLogout}>Logout</a>
@@ -48,14 +48,14 @@ export const Navigation = () => {
         ) : (
             <nav className={styles.container}>
 
-                <ul className={styles["nav-left"]}>
+                <ul >
                     <li className={isActive("/users/products")}>
                         <Link to="/users/products">Products</Link>
                     </li>
                 </ul>
 
                 
-                <ul className={styles["nav-right"]}>
+                <ul className={styles["nav-auth"]}>
                     <li className={isActive("/users/register")}>
                         <Link to="/users/register">Register</Link>
                     </li>

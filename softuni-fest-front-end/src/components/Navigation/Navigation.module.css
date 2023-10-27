@@ -18,23 +18,15 @@ body {
     list-style-type: none;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+
     gap: 10%;
 }
 
- .nav-left{
-    margin-left: 2%;
-    margin-right: auto;
+.nav-auth{
+    gap: 30% !important
 }
 
-.nav-right {
-    margin-right: 2%;
-    margin-left: auto;
-}
 
-.nav-right div{
-    margin: 0;
-}
 
 
 li a {
