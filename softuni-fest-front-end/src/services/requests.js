@@ -4,7 +4,7 @@ const endpoints = {
     registerUser: '/users/register',
     registerBusiness: '/businesses/register',
     loginUser: '/users/login',
-    loginBusiness: '/businesses/login',
+    loginBusiness: '/users/login',
     logoutUser: '/users/logout',
     logoutBusiness: '/businesses/logout',
     createProduct: '/products/create',

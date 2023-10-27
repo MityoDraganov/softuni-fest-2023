@@ -9,39 +9,42 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(credentials)
-        const data = await registerUser(credentials)
-        console.log(data)
-        setAccessData(data)
-        localStorage.setItem('access_info', JSON.stringify(data));
+        const response = await registerUser(credentials)
+        console.log(response.ok)
+        setAccessData(response)
+        localStorage.setItem('access_info', JSON.stringify(response));
     }
+
     return (
         <div className={styles.container}>
             <form onSubmit={handleSubmit}>
                 <h1>Sign Up</h1>
                 <div className={styles.flex}>
-                    <div className={styles.company}>
+                    <div >
                         <label>
                             First Name
+
+                            <input type="text" name="firstname" value={credentials.firstName} onChange={(e) => setCredentials(state => ({ ...state, firstName: e.target.value }))}
+                                required
+                                minLength={3}
+                                maxLength={20}
+                                pattern="[a-zA-Z]+"
+                                title="Only letters are allowed"
+                                size={20} />
                         </label>
-                        <input type="text" name="firstname" value={credentials.firstName} onChange={(e) => setCredentials(state => ({ ...state, firstName: e.target.value }))}
-                            required
-                            minLength={3}
-                            maxLength={20}
-                            pattern="[a-zA-Z]+"
-                            title="Only letters are allowed"
-                            size={20} />
                     </div>
-                    <div className={styles.name}>
+                    <div>
                         <label>
                             Last Name
+
+                            <input type="text" name="lastname" value={credentials.lastName} onChange={(e) => setCredentials(state => ({ ...state, lastName: e.target.value }))}
+                                required
+                                minLength={3}
+                                maxLength={20}
+                                pattern="[a-zA-Z]+"
+                                title="Only letters are allowed"
+                                size={20} />
                         </label>
-                        <input type="text" name="lastname" value={credentials.lastName} onChange={(e) => setCredentials(state => ({ ...state, lastName: e.target.value }))}
-                            required
-                            minLength={3}
-                            maxLength={20}
-                            pattern="[a-zA-Z]+"
-                            title="Only letters are allowed"
-                            size={20} />
                     </div>
                 </div>
 
@@ -64,7 +67,7 @@ const SignUp = () => {
             </form>
             <label>
                 <Link to={"/business/register"} className={styles.label_business}>
-                    Business Sign In
+                Sign Up As Business 
                 </Link>
             </label>
         </div>

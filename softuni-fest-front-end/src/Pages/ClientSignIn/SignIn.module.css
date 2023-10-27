@@ -23,9 +23,9 @@ input {
 }
 
 button {
+    display: block;
     width: 100%;
     font-size: 16px;
-    padding: 15px;
     border-radius: 15px;
     background: blue;
     color: white;
@@ -33,6 +33,11 @@ button {
     cursor: pointer;
     transition: all 0.3s;
     margin-top: 20px;
+
+}
+
+.fullWidth{
+    width: 460px;
 }
 
 button:hover {
@@ -56,4 +61,4 @@ h1{
 .label_business {
     text-decoration: none;
     color: blue;
-  }
+}

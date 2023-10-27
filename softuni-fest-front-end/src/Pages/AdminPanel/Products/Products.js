@@ -4,7 +4,8 @@ import { ProductModal } from "../../../components/ProductModal/ProductModal";
 import { createProduct, getProductsByBusinessId } from "../../../services/requests";
 
 import { toast } from 'react-toastify';
-import { ProductRow } from "../../../components/productRow/ProductRow";
+// import { ProductRow } from "../../../components/productRow/ProductRow";
+import { ProductRow } from "../../../components/productRow/productRow";
 import { AuthContext } from "../../../contexts/AuthContext";
 
 

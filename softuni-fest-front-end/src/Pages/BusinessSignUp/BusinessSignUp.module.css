@@ -4,9 +4,11 @@
     padding: 20px;
     font-size: 14px;
 }
-.container > label{
+
+.container > label {
     margin-top: 10px;
 }
+
 label {
     display: block;
     margin-bottom: 5px;
@@ -19,11 +21,11 @@ input {
     border-radius: 10px;
     outline: none;
     margin-top: 5px;
-    padding: 5px 0px;
+    padding: 5px 10px;
 }
 
 button {
-    width: 100%;
+    width: 460px;
     font-size: 16px;
     padding: 15px;
     border-radius: 15px;
@@ -39,21 +41,64 @@ button:hover {
     background: rgb(0, 0, 167);
 }
 
-h1{
+h1 {
     margin: 30px 0px 30px 0px;
 }
-
+/* 
 .company,
-.email{
+.name {
+  display: flex;
+  flex-direction: column;
+} */
+
+.flex {
     display: flex;
-    flex-direction: column;
+    /* justify-content: space-between;
+   */
+    gap: 12px;
 }
-.flex{
-    display: flex;
-    justify-content: space-between;
+
+.flex > div {
+flex: 1; 
 }
 
 .label_business {
     text-decoration: none;
     color: blue;
-  }
+}
+/* SignUp.module.css */
+
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.formRow {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Misc additional styles */
+.fullWidth{
+    width: 460px;
+}

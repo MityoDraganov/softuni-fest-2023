@@ -21,13 +21,13 @@ const BusinessSignUp = () => {
       <form onSubmit={handleSubmit}>
         <h1>Business Sign Up</h1>
         <div className={styles.flex}>
-          <div className={styles.company}>
+          <div >
             <label>
               Company Name
             </label>
             <input type="text" name="company" value={credentials.companyName} onChange={(e) => setCredentials(state => ({ ...state, companyName: e.target.value }))} />
           </div>
-          <div className={styles.email}>
+          <div>
             <label>
               Email
             </label>
@@ -49,8 +49,8 @@ const BusinessSignUp = () => {
         </div>
       </form>
       <label>
-        <Link to={"/business/register"} className={styles.label_business}>
-          Business Sign In
+        <Link to={"/users/register"} className={styles.label_business}>
+          Sign Up As Client
         </Link>
       </label>
     </div>
