@@ -12,9 +12,9 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <AuthProvider>
-                <ToastContainer>
+
                     <App />
-                </ToastContainer>
+
             </AuthProvider>
         </BrowserRouter>
 
