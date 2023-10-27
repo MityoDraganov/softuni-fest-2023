@@ -5,7 +5,7 @@ export const Products = () => {
 
     return(
         <>
-            <h1>Works!</h1>
+            <h1>Products</h1>
         </>
     )
 }
