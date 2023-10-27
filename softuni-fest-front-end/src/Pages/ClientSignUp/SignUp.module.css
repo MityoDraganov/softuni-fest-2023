@@ -44,7 +44,7 @@ h1{
 }
 
 .company,
-.email{
+.name{
   display: flex;
   flex-direction: column;
 }
