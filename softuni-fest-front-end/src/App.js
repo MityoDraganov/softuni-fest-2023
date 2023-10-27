@@ -17,7 +17,7 @@ import { AuthContext } from './contexts/AuthContext';
 function App() {
   return (
     <>
-    <AuthContext.Provider>
+ 
       <Navigation />
       <Routes>
         <Route path="/users/register" element={<SignUp />} />
@@ -28,7 +28,7 @@ function App() {
 
         <Route path="/business/products" element={<Products />} />
       </Routes>
-    </AuthContext.Provider>
+ 
     </>
   );
 }

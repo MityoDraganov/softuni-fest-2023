@@ -38,7 +38,7 @@ export const createQuestion = async (
     });
 };
 
-export const register = async ({ firstName, lastName, email, password, rePassword, grade, classValue }) => {
+export const register = async ({ firstName, lastName, email, password, rePassword, }) => {
     return api.post(endpoints.register, {
         firstName,
         lastName,

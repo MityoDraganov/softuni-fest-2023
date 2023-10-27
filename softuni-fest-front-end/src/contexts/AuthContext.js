@@ -4,7 +4,7 @@ export const AuthContext = createContext();
 
 export function AuthProvider(props) {
     const [accessData, setAccessData] = useState({
-        "isBusiness": false
+        "isBusiness": true
     });
     useEffect(() => {
         const storedAccessData = localStorage.getItem('access_info');

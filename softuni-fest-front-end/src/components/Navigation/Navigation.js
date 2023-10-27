@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 //contexts
@@ -9,7 +9,7 @@ import styles from "./Navigation.module.css";
 export const Navigation = () => {
     const { pathname } = useLocation();
 
-    const [ accessData ] = useState(AuthContext)
+    const { accessData } = useContext(AuthContext)
 
 
     const isActive = (path) => {
