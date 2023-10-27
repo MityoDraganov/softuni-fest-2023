@@ -5,17 +5,16 @@ import { useState } from "react"
 
 
 
-export const ProductModal = ({ setIsOpen, onChangeHandler, values, handleSubmit }) => {
+export const ProductModal = ({ CloseModal, mode, onChangeHandler, values, handleSubmit }) => {
 
 
-    
-    
+
 
     return (
 
         <div className={styles["add-product-modal"]}>
             <h1>
-                Create product
+                {mode == "create" ? "Create product" : "Edit product"}
             </h1>
 
             <form className={styles["product-form"]} onSubmit={handleSubmit}>
@@ -47,8 +46,13 @@ export const ProductModal = ({ setIsOpen, onChangeHandler, values, handleSubmit 
                 </div>
 
                 <div className={styles["modal-actions"]}>
-                    <button type="button" onClick={() => setIsOpen(false)} className={styles["action-deny"]}>Close</button>
-                    <button type="submit">Create</button>
+                    <button type="button" onClick={CloseModal} className={styles["action-deny"]}>Close</button>
+                    {mode == "create"
+                        ?
+                        <button type="submit">Create</button>
+                        :
+                        <button type="submit">Edit</button>
+                    }
                 </div>
             </form>
 

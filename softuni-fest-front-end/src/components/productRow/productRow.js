@@ -1,14 +1,14 @@
-import styles from "./productRow.module.css"
+export const ProductRow = ({ product, setEditingIndex }) => {
 
-export const productRow = (product) => {
+
     return(
         <tr className="product-row">
             <td>{product.name}</td>
             <td>{product.description}</td>
-            <td>{product.price}</td>
+            <td>{product.price.toFixed(2)}</td>
             <td>
                 <div>
-                    <button>Edit</button>
+                    <button onClick={setEditingIndex}>Edit</button>
                     <button>Delete</button>
                 </div>
             </td>
