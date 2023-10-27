@@ -1,32 +1,60 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+
+//contexts
+import { AuthContext } from "../../contexts/AuthContext";
+
 import styles from "./Navigation.module.css";
 
 export const Navigation = () => {
     const { pathname } = useLocation();
+
+    const [ accessData ] = useState(AuthContext)
+
 
     const isActive = (path) => {
         return path === pathname ? styles.active : "";
     };
 
     return (
-        <nav className={styles.container}>
-            <ul>
-                <li className={isActive("/business/register")}>
-                    <Link to="/business/register">Register</Link>
-                </li>
-                <li className={isActive("/business/login")}>
-                    <Link to="/business/login">Login</Link>
-                </li>
-                <li className={isActive("/business/products")}>
-                    <Link to="/business/products">Products</Link>
-                </li>
-            </ul>
-
-            <div>
-                <div className={styles["pfp-container"]}>
-                    <img className={styles["pfp"]} src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" />
+        accessData.isBusiness ? (
+            <nav className={styles.container}>
+                <ul>
+                    <li className={isActive("/business/register")}>
+                        <Link to="/business/register">Register</Link>
+                    </li>
+                    <li className={isActive("/business/login")}>
+                        <Link to="/business/login">Login</Link>
+                    </li>
+                    <li className={isActive("/business/products")}>
+                        <Link to="/business/products">Products</Link>
+                    </li>
+                </ul>
+                <div>
+                    <div className={styles["pfp-container"]}>
+                        <img className={styles["pfp"]} src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" />
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        ) : (
+            <nav className={styles.container}>
+                <ul>
+                    <li className={isActive("/users/register")}>
+                        <Link to="/users/register">Register</Link>
+                    </li>
+                    <li className={isActive("/users/login")}>
+                        <Link to="/users/login">Login</Link>
+                    </li>
+                    <li className={isActive("/users/products")}>
+                        <Link to="/users/products">Products</Link>
+                    </li>
+                </ul>
+                <div>
+                    <div className={styles["pfp-container"]}>
+                        <img className={styles["pfp"]} src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" />
+                    </div>
+                </div>
+            </nav>
+        )
     );
 };

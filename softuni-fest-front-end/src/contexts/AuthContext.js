@@ -3,7 +3,9 @@ import { createContext, useEffect, useState } from 'react';
 export const AuthContext = createContext();
 
 export function AuthProvider(props) {
-    const [accessData, setAccessData] = useState(null);
+    const [accessData, setAccessData] = useState({
+        "isBusiness": false
+    });
     useEffect(() => {
         const storedAccessData = localStorage.getItem('access_info');
         if (storedAccessData) {

@@ -12,10 +12,12 @@ import SignUp from './Pages/ClientSignUp/SignUp';
 import SignIn from './Pages/ClientSignIn/SignIn';
 import BusinessSignIn from './Pages/BusinessSignIn/BusinessSignIn';
 import BusinessSignUp from './Pages/BusinessSignUp/BusinessSignUp';
+import { AuthContext } from './contexts/AuthContext';
 
 function App() {
   return (
     <>
+    <AuthContext.Provider>
       <Navigation />
       <Routes>
         <Route path="/users/register" element={<SignUp />} />
@@ -26,6 +28,7 @@ function App() {
 
         <Route path="/business/products" element={<Products />} />
       </Routes>
+    </AuthContext.Provider>
     </>
   );
 }
