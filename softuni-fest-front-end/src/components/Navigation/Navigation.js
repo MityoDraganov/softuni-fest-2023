@@ -7,11 +7,11 @@ import { AuthContext } from "../../contexts/AuthContext";
 import styles from "./Navigation.module.css";
 
 export const Navigation = () => {
-    const {setAccessData} = useContext(AuthContext)
+    const { setAccessData } = useContext(AuthContext)
 
     const handleLogout = (e) => {
         e.preventDefault()
-        setAccessData({isBusiness: false})
+        setAccessData({ isBusiness: false })
         localStorage.removeItem('access_info')
     }
 
@@ -31,35 +31,41 @@ export const Navigation = () => {
                     <li className={isActive("/business/products")}>
                         <Link to="/business/products">Products</Link>
                     </li>
+                </ul>
+
+                <ul>
 
                     <li>
                         <a onClick={handleLogout}>Logout</a>
                     </li>
-                </ul>
-                <div>
+                {/* <div>
                     <div className={styles["pfp-container"]}>
                         <img className={styles["pfp"]} src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" />
                     </div>
-                </div>
+                </div> */}
+                </ul>
             </nav>
         ) : (
             <nav className={styles.container}>
-                <ul>
+
+                <ul className={styles["nav-left"]}>
+                    <li className={isActive("/users/products")}>
+                        <Link to="/users/products">Products</Link>
+                    </li>
+                </ul>
+                <ul className={styles["nav-right"]}>
                     <li className={isActive("/users/register")}>
                         <Link to="/users/register">Register</Link>
                     </li>
                     <li className={isActive("/users/login")}>
                         <Link to="/users/login">Login</Link>
                     </li>
-                    <li className={isActive("/users/products")}>
-                        <Link to="/users/products">Products</Link>
-                    </li>
-                </ul>
-                <div>
+                {/* <div>
                     <div className={styles["pfp-container"]}>
                         <img className={styles["pfp"]} src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" />
                     </div>
-                </div>
+                </div> */}
+                </ul>
             </nav>
         )
     );

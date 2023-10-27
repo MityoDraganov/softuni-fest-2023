@@ -7,13 +7,21 @@ export const ProductModal = ({ setIsOpen }) => {
     const [values, setValues] = useState({
         "name": "",
         "description": "",
-        "price": ""
+        "price": 0
     })
 
-    const handleCreateProduct= (e) => {
+    const onChangeHandler = (e) => {
+        setValues(state => ({ ...state, [e.target.name]: e.target.value }))
+    }
+
+
+
+
+
+    const handleCreateProduct = (e) => {
         e.preventDefault()
 
-
+        console.log(values);
     }
 
     return (
@@ -26,15 +34,29 @@ export const ProductModal = ({ setIsOpen }) => {
             <form className={styles["product-form"]} onSubmit={handleCreateProduct}>
                 <div>
                     <label>Name</label>
-                    <input name="name"/>
+                    <input
+                        name="name"
+                        onChange={onChangeHandler}
+                        value={values.name}
+                    />
                 </div>
                 <div>
                     <label name="description">Description</label>
-                    <textarea name="description"/>
+                    <textarea
+                        name="description"
+                        onChange={onChangeHandler}
+                        value={values.description}
+                    />
                 </div>
                 <div>
                     <label name="price">Price</label>
-                    <input name="price" type="number" />
+                    <input
+                        name="price"
+                        type="text"
+                        onChange={onChangeHandler}
+                        value={values.price}
+                    />
+
                 </div>
 
                 <div className={styles["modal-actions"]}>
