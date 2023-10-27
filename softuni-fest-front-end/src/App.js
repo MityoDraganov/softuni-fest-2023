@@ -2,6 +2,12 @@
 import './App.css';
 import {Routes, Route, } from "react-router-dom"
 
+//user imports
+
+//bussiness imports
+import { Products } from './Pages/AdminPanel/Products';
+
+
 function App() {
   return (
     <>
@@ -15,7 +21,7 @@ function App() {
         <Route path="/bussiness/login" element={} />
         <Route path="/bussiness/register" element={} />
 
-        <Route path="/bussiness/products" element={} />
+        <Route path="/bussiness/products" element={<Products />} />
       </Routes>
     </>
   );
