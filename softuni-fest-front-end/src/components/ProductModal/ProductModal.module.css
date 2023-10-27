@@ -1,0 +1,35 @@
+.add-product-modal {
+    border-radius: 5%;
+    box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0;
+    width: 40%;
+    margin: 0 auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    z-index: 1000; /* Adjust z-index as needed */
+}
+
+.product-form textarea {
+    width: 100%;
+    height: 100%;
+    padding: 1.5% 2%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+}
+
+.modal-actions{
+    display: flex;
+    flex-direction: row;
+    gap: 10%
+}
+
+.modal-actions .action-deny{
+    background-color: #ef233c;
+}
