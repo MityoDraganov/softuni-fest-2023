@@ -19,11 +19,10 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/users/register" element={<SignUp />} />
-        {/* //<Route path="/users/login" element={} />
+        <Route path="/users/login" element={<SignIn />} />
 
-        //bussiness routes
-        //<Route path="/bussiness/login" element={} />
-        //<Route path="/bussiness/register" element={} /> */}
+        <Route path="/bussiness/login" element={<BusinessSignIn />} />
+        <Route path="/bussiness/register" element={<BusinessSignUp />} />
 
         <Route path="/business/products" element={<Products />} />
       </Routes>
