@@ -22,7 +22,7 @@ const request = async (method, url, data) => {
         if(token === undefined){
             return
         }
-        options.headers["User-Authorization"] = token
+        options.headers["x-authorization"] = token
     }
 
     try {
