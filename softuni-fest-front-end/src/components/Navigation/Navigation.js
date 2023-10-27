@@ -11,13 +11,13 @@ export const Navigation = () => {
     return (
         <nav className={styles.container}>
             <ul>
-                <li className={isActive("/bussiness/register")}>
+                <li className={isActive("/business/register")}>
                     <Link to="/business/register">Register</Link>
                 </li>
-                <li className={isActive("/bussiness/login")}>
+                <li className={isActive("/business/login")}>
                     <Link to="/business/login">Login</Link>
                 </li>
-                <li className={isActive("/bussiness/products")}>
+                <li className={isActive("/business/products")}>
                     <Link to="/business/products">Products</Link>
                 </li>
             </ul>
