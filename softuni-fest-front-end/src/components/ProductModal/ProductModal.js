@@ -1,31 +1,15 @@
 
 import styles from "./ProductModal.module.css"
 import { useState } from "react"
-import { createProduct } from "../../services/requests"
-
-export const ProductModal = ({ setIsOpen }) => {
-
-    const [values, setValues] = useState({
-        "name": "",
-        "description": "",
-        "price": 0
-    })
-
-    const onChangeHandler = (e) => {
-        setValues(state => ({ ...state, [e.target.name]: e.target.value }))
-    }
 
 
 
 
+export const ProductModal = ({ setIsOpen, onChangeHandler, values, handleSubmit }) => {
 
-    const handleCreateProduct = (e) => {
-        e.preventDefault()
 
-        const data = createProduct(values)
-
-        console.log(data);
-    }
+    
+    
 
     return (
 
@@ -34,7 +18,7 @@ export const ProductModal = ({ setIsOpen }) => {
                 Create product
             </h1>
 
-            <form className={styles["product-form"]} onSubmit={handleCreateProduct}>
+            <form className={styles["product-form"]} onSubmit={handleSubmit}>
                 <div>
                     <label>Name</label>
                     <input

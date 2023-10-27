@@ -9,9 +9,15 @@ const BusinessSignIn = () => {
     const { setAccessData } = useContext(AuthContext)
     const handleSubmit = async (e) => {
         e.preventDefault()
+        try{
+
+        
         const data = await loginBusiness(credentials)
         setAccessData(data)
         localStorage.setItem('access_info', JSON.stringify(data));
+        } catch(err){
+            console.error(err)
+        }
     }
     return (
         <div className={styles.container}>

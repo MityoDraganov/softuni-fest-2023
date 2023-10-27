@@ -42,6 +42,7 @@ export const logoutBusiness = async () => {
 }
 
 export const createProduct = async ({ name, description, price }) => {
+    
     return api.post(endpoints.createProduct, { name, description, price });
 }
 
