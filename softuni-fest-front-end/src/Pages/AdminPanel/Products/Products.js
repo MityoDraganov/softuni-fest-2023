@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { ProductModal } from "../../../components/ProductModal/ProductModal";
 import { createProduct } from "../../../services/requests";
 
-
+import {toast} from "react-toastify"
 
 export const Products = () => {
 
@@ -27,8 +27,14 @@ export const Products = () => {
 
     const createHandler = async (e) => {
         e.preventDefault()
-        console.log("clicked");
-        const data = await createProduct(values)
+
+        try{
+
+            console.log("clicked");
+            const data = await createProduct(values)
+        } catch (err){
+            toast(err)
+        }
     }
 
     return (

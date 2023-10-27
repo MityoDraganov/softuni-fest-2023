@@ -18,7 +18,7 @@ const request = async (method, url, data) => {
     //Mitko`s work here (delete if mad) - sets the auth token in the headers if there is any
     if(localStorage.access_info){
         const authData = JSON.parse(localStorage.access_info)
-        const token = authData.token
+        const token = authData.accessToken
         if(token === undefined){
             return
         }
