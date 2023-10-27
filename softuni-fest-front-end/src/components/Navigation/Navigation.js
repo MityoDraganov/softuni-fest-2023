@@ -36,7 +36,7 @@ export const Navigation = () => {
                 <ul className={styles["nav-auth"]}>
 
                     <li>
-                        <a onClick={handleLogout}>Logout</a>
+                        <a onClick={handleLogout} href="/">Logout</a>
                     </li>
                     {/* <div>
                     <div className={styles["pfp-container"]}>

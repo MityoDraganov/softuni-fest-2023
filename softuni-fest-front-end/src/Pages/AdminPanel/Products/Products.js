@@ -3,10 +3,10 @@ import { useContext, useEffect, useState } from "react";
 import { ProductModal } from "../../../components/ProductModal/ProductModal";
 import { createProduct, editProduct, getProductsByBusinessId } from "../../../services/requests";
 
-import { toast } from 'react-toastify';
 // import { ProductRow } from "../../../components/productRow/ProductRow";
 import { ProductRow } from "../../../components/productRow/productRow";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { errorNotification } from "../../../util/notificationHandler";
 
 export const Products = () => {
     const { accessData } = useContext(AuthContext)
@@ -48,7 +48,7 @@ export const Products = () => {
             const data = await createProduct(values);
             setIsOpen(false)
         } catch (err) {
-            toast(err.message);
+            errorNotification(err.message)
         }
     };
 
@@ -59,7 +59,8 @@ export const Products = () => {
             getProducts()
             setEditingIndex(null)
         } catch (err) {
-            toast(err.message);
+            errorNotification(err.message)
+
         }
     };
 
