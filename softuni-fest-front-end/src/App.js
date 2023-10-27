@@ -9,23 +9,23 @@ import { Navigation } from './components/Navigation/Navigation';
 //bussiness imports
 import { Products } from './Pages/AdminPanel/Products';
 import SignUp from './Pages/ClientSignUp/SignUp';
-
+import SignIn from './Pages/ClientSignIn/SignIn';
+import BusinessSignIn from './Pages/BusinessSignIn/BusinessSignIn';
+import BusinessSignUp from './Pages/BusinessSignUp/BusinessSignUp';
 
 function App() {
   return (
     <>
       <Navigation />
       <Routes>
-
-        //user routes
         <Route path="/users/register" element={<SignUp />} />
-        {/* //<Route path="/users/login" element={} />
+        <Route path="/users/login" element={<SignIn />} />
+        
 
-        //bussiness routes
-        //<Route path="/bussiness/login" element={} />
-        //<Route path="/bussiness/register" element={} /> */}
+        <Route path="/business/login" element={<BusinessSignIn/>} />
+        <Route path="/business/register" element={<BusinessSignUp/>} />
 
-        <Route path="/bussiness/products" element={<Products />} />
+        <Route path="/business/products" element={<Products />} />
       </Routes>
     </>
   );
