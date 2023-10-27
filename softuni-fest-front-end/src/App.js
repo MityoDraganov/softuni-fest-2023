@@ -1,6 +1,6 @@
 
 import './App.css';
-import {Routes, Route, } from "react-router-dom"
+import { Routes, Route, } from "react-router-dom"
 
 import { Navigation } from './components/Navigation/Navigation';
 
@@ -8,6 +8,7 @@ import { Navigation } from './components/Navigation/Navigation';
 
 //bussiness imports
 import { Products } from './Pages/AdminPanel/Products';
+import SignUp from './Pages/ClientSignUp/SignUp';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
       <Routes>
 
         //user routes
-        {/* <Route path="/users/register" element={} /> */}
+        <Route path="/users/register" element={<SignUp />} />
         {/* //<Route path="/users/login" element={} />
 
         //bussiness routes
