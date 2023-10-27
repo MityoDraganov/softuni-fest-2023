@@ -6,19 +6,27 @@ const SignIn = () => {
         <div className={styles.container}>
             <h1>Sign In</h1>
 
-            <form>
-                <label>
-                    Email:
+            <div className={styles.flex}>
+                <div className={styles.company}>
+                    <label>
+                        Company Name
+                    </label>
+                    <input type="text" name="company" />
+                </div>
+                <div className={styles.email}>
+                    <label>
+                        Email
+                    </label>
                     <input type="email" name="email" />
-                </label>
-                <label>
-                    Password:
-                    <input type="password" name="password" />
-                </label>
-                <button type="submit" className={styles.fullWidth}>
-                    Sign Up
-                </button>
-            </form>
+                </div>
+            </div>
+            <label>
+                Password
+            </label>
+            <input type="email" name="email" />
+            <button type="submit" className={styles.fullWidth}>
+                Sign Up
+            </button>
         </div>
     );
 };

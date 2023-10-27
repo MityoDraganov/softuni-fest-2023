@@ -5,43 +5,37 @@ const SignUp = () => {
     return (
         <div className={styles.container}>
             <h1>Sign Up</h1>
-
-            <form>
-                <label>
-                    First Name:
-                    <input type="text" name="firstName" />
-                </label>
-
-                <label>
-                    Last Name:
-                    <input type="text" name="lastName" />
-                </label>
-
-                <label>
-                    Email:
-                    <input type="email" name="email" />
-                </label>
-
-                <label>
-                    Password:
-                    <input type="password" name="password" />
-                </label>
-
-                <label>
-                    Re-enter Password:
-                    <input type="password" name="rePassword" />
-                </label>
-
-                <div className={styles.terms}>
+            <div className={styles.flex}>
+                <div className={styles.company}>
                     <label>
-                        <input type="checkbox" name="terms" />
+                        First Name
                     </label>
-                    <span>I agree to the terms and privacy policy</span>
+                    <input type="text" name="company" />
                 </div>
-                <button type="submit" className={styles.fullWidth}>
-                    Sign Up
-                </button>
-            </form>
+                <div className={styles.name}>
+                    <label>
+                        Last Name
+                    </label>
+                    <input type="text" name="firstName" />
+                </div>
+            </div>
+
+            <label>
+                Email
+                <input type="email" name="email" />
+            </label>
+            <label>
+                Password
+                <input type="password" name="password" />
+            </label>
+
+            <label>
+                Re-enter Password
+                <input type="password" name="rePassword" />
+            </label>
+            <button type="submit" className={styles.fullWidth}>
+                Sign Up
+            </button>
         </div>
     );
 };
