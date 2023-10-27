@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './BusinessSignUp.module.css';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { registerBusiness } from '../../services/requests';
 
 const BusinessSignUp = () => {
+  const navigate = useNavigate()
   const [credentials, setCredentials] = useState({ companyName: "", email: "", password: "", rePassword: "" });
   const { setAccessData } = useContext(AuthContext)
   const handleSubmit = async (e) => {
@@ -12,6 +13,8 @@ const BusinessSignUp = () => {
     const data = await registerBusiness(credentials)
     setAccessData(data)
     localStorage.setItem('access_info', JSON.stringify(data));
+
+    navigate("/business/products")
   }
   return (
     <div className={styles.container}>
