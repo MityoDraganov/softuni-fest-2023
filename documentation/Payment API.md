@@ -1,5 +1,3 @@
-Here is the payment API documentation formatted in Markdown:
-
 # Payment API
 
 ## Overview
@@ -62,5 +60,3 @@ POST /pay/opennode/:id
 - Calls `createCharge()` to make Charge request
 - Returns checkout URL to redirect user to
 - Would need webhook handling
-
-Let me know if you need any changes!
