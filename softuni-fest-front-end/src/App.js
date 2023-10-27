@@ -12,23 +12,23 @@ import SignUp from './Pages/ClientSignUp/SignUp';
 import SignIn from './Pages/ClientSignIn/SignIn';
 import BusinessSignIn from './Pages/BusinessSignIn/BusinessSignIn';
 import BusinessSignUp from './Pages/BusinessSignUp/BusinessSignUp';
-import { AuthContext } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
     <>
- 
-      <Navigation />
-      <Routes>
-        <Route path="/users/register" element={<SignUp />} />
-        <Route path="/users/login" element={<SignIn />} />
+      <AuthProvider>
+        <Navigation />
+        <Routes>
+          <Route path="/users/register" element={<SignUp />} />
+          <Route path="/users/login" element={<SignIn />} />
 
-        <Route path="/business/login" element={<BusinessSignIn />} />
-        <Route path="/business/register" element={<BusinessSignUp />} />
+          <Route path="/business/login" element={<BusinessSignIn />} />
+          <Route path="/business/register" element={<BusinessSignUp />} />
 
-        <Route path="/business/products" element={<Products />} />
-      </Routes>
- 
+          <Route path="/business/products" element={<Products />} />
+        </Routes>
+      </AuthProvider>
     </>
   );
 }

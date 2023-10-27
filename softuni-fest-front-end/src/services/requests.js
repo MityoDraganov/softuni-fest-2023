@@ -1,78 +1,24 @@
 import * as api from '../api/api';
+
 const endpoints = {
-    categories: 'categories',
-    questions: 'questions',
-    register: 'users/register',
-    login: 'users/login',
-    guests: 'guests',
-    results: 'results'
+    registerUser: '/users/register',
+    loginUser: '/users/login',
+    registerBusiness: '/businesses/register',
+    loginBusiness: '/businesses/login'
 };
 
-export const getCategories = async () => {
-    return api.get(endpoints.categories);
-};
-
-export const createCategory = async tag => {
-    return api.post(endpoints.categories, { tag });
-};
-
-export const getQuestions = async () => {
-    return api.get(endpoints.questions);
-};
-
-export const getQuestionsByCategory = async (category) => {
-    return api.get(`${endpoints.questions}/${category}`)
+export const registerUser = async ({ firstName, lastName, email, password, rePassword }) => {
+    return api.post(endpoints.registerUser, { firstName, lastName, email, password });
 }
 
-export const createQuestion = async (
-    question,
-    answers,
-    correctAnswer,
-    category
-) => {
-    return api.post(endpoints.questions, {
-        question,
-        answers,
-        correctAnswer,
-        category,
-    });
-};
-
-export const register = async ({ firstName, lastName, email, password, rePassword, }) => {
-    return api.post(endpoints.register, {
-        firstName,
-        lastName,
-        email,
-        password,
-        rePassword,
-        grade,
-        class: classValue
-    })
+export const loginUser = async ({ email, password }) => {
+    return api.post(endpoints.loginUser, { email, password });
 }
 
-export const login = async ({ email, password}) => {
-    return api.post(endpoints.login, {
-        email,
-        password,
-    })
+export const registerBusiness = async ({ companyName, email, password, rePassword }) => {
+    return api.post(endpoints.registerBusiness, { companyName, email, password, rePassword });
 }
 
-export const setGuestCredentials = async({name, grade, classValue}) =>{
-    return api.post(`${endpoints.guests}/setGuestCredentials`, {
-        name,
-        grade,
-        class: classValue
-    })
-}
-
-export const postResults = async(submission) => {
-    return api.post(endpoints.results, {
-        categoryId: submission.categoryId,
-        correctAnswers: submission.correctAnswers,
-        questions: submission.questions
-    })
-}
-
-export const getResults = async() =>{
-    return api.get(endpoints.results)
+export const loginBusiness = async ({ email, password }) => {
+    return api.post(endpoints.loginBusiness, { email, password });
 }
