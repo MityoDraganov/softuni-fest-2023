@@ -46,6 +46,7 @@ export const Products = () => {
 
         try {
             const data = await createProduct(values);
+            getProducts()
             setIsOpen(false)
         } catch (err) {
             errorNotification(err.message)
