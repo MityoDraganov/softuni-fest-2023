@@ -15,8 +15,9 @@
 }
 
 .container button {
+    
     display: block;
-    width: 100%;
+    width: 102%;
     font-size: 16px;
     border-radius: 15px;
     padding: 15px;
@@ -26,6 +27,7 @@
     cursor: pointer;
     transition: all 0.3s;
     margin-top: 20px;
+    
 
 }
 
@@ -64,5 +66,5 @@
     border-radius: 10px;
     outline: none;
     margin-top: 5px;
-    padding: 5px 10px !important;
+    padding: 5px 0 5px 10px !important;
 }
