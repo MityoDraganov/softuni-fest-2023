@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const router = require('./router'); // Import the router setup file
 
-const database = process.env.DATABASE || 'mongodb://localhost:27017/ecommerce';
+const database = process.env.DATABASE || 'mongodb://localhost:27017/payment-system';
 const PORT = process.env.PORT || 3030;
 
 async function start() {
