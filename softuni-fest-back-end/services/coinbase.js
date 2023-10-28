@@ -3,6 +3,7 @@
 require('dotenv').config();
 
 const { Client, Webhook, resources } = require('coinbase-commerce-node');
+const { addPurchaseHistory } = require('../utils/purchaseHistory');
 
 // Constants
 const COINBASE_API_KEY = process.env.COINBASE_API_KEY;
@@ -35,7 +36,7 @@ function validateChargeData(data) {
     return true;
 }
 
-async function createCharge(product) {
+async function createCharge(product, userId) {
 
     // Validate product data
     if (!validateChargeData(product)) {
@@ -51,6 +52,12 @@ async function createCharge(product) {
             currency: 'USD',
             amount: product.price,
         },
+        metadata: {
+            // Add custom metadata fields here
+            product_id: product.productId,
+            customer_id: userId,
+            // Add more metadata fields as needed
+        },
         redirect_url: PAYMENT_SUCCESS_URL
     };
 
@@ -63,8 +70,11 @@ async function createCharge(product) {
 async function handleWebhook(rawBody, signature) {
 
     let webhook;
+    let productMetadata;
 
     try {
+        const webhookData = req.body
+        productMetadata = webhookData.event.data.metadata;
         // Verify webhook signature
         webhook = Webhook.verifySignature(rawBody, signature, COINBASE_API_KEY);
 
@@ -78,6 +88,7 @@ async function handleWebhook(rawBody, signature) {
 
         case 'charge:confirmed':
             console.log('Charge confirmed!', webhook.data);
+            addPurchaseHistory(productMetadata.customer_id, productMetadata.product_id, "coinbase")
             break;
 
         case 'charge:failed':

@@ -4,7 +4,7 @@ const success_url = "http://localhost:3000/payment/success"
 const cancel_url = "http://localhost:3000/users/shop/"
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-async function createSession(product) {
+async function createSession(product, userId) {
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         mode: 'payment',
@@ -20,13 +20,17 @@ async function createSession(product) {
                 quantity: 1,
             },
         ],
+        metadata: {
+            userId: userId, // Pass the user ID as metadata
+            productId: product._id, // Pass the product ID as metadata
+        },
         success_url: `${success_url}`,
         cancel_url: `${cancel_url}`,
     });
     return session;
 }
 
-async function createSubscriptionSession(product) {
+async function createSubscriptionSession(product, userId) {
     const priceId = product.subscriptionId;
     if (!priceId) throw new Error("No subscriptionId found");
     const session = await stripe.checkout.sessions.create({
@@ -38,6 +42,10 @@ async function createSubscriptionSession(product) {
                 quantity: 1,
             },
         ],
+        metadata: {
+            userId: userId, // Pass the user ID as metadata
+            productId: product._id, // Pass the product ID as metadata
+        },
         success_url: `${success_url}`,
         cancel_url: `${cancel_url}`,
     });
