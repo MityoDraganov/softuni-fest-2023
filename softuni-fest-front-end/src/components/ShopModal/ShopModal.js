@@ -54,8 +54,8 @@ export const ShopModal = ({ product, closeModal }) => {
                 {accessData.accessToken ?
                     (
                         <div className={styles["modal-actions"]}>
+                            <button onClick={handleStripePayment}>Pay with Stripe</button> 
                             <button onClick={handleCoinbasePayment}>Pay with crypto</button>
-                            <button onClick={handleStripePayment}>Pay with Stripe</button>
                         </div>
                     )
                     :

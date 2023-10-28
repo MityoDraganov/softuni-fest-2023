@@ -1,1 +1,3 @@
-remove the jwt token
+delete product price from stripe api when deleting record
+
+

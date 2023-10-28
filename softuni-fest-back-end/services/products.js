@@ -1,6 +1,5 @@
-const req = require('express/lib/request');
 const Product = require('../models/Product');
-const Business = require('../models/Business');
+const { createPrice, deletePrice } = require('./stripe');
 
 
 async function getAll() {
@@ -11,8 +10,15 @@ async function getAll() {
         }).lean();
 }
 
-async function create(name, description, price, owner) {
-    const result = new Product({ name, description, price, owner });
+async function create(name, description, price, owner, subscription) {
+    let priceProd; // Define the price variable here
+
+    if (subscription) {
+        priceProd = await createPrice(name, description, price); // Use the correct variable name
+    }
+    const priceId = priceProd ? priceProd.id : null;
+
+    const result = new Product({ name, description, price, owner, priceId});
     await result.save();
 
     return result;
@@ -57,6 +63,11 @@ async function getByOwner(owner) {
 }
 
 async function deleteById(id) {
+    const product = await getById(id);
+    if(!product) throw new Error("No product found");
+    if(product.priceId){
+        await deletePrice(product.priceId);
+    }
     await Product.findByIdAndDelete(id);
 }
 
