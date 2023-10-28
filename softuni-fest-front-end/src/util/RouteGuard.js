@@ -6,10 +6,9 @@ import { errorNotification } from "./notificationHandler";
 
 
 export function RouteGuard({ path, component: Component, ...props }) {
-    const { accessData } = useContext(AuthContext);
+    const { isAuth } = useContext(AuthContext);
     const navigate = useNavigate()
-    console.log(accessData)
-    if (accessData.email) {
+    if (isAuth) {
         return (
             <Component />
         )

@@ -5,7 +5,6 @@ import { errorNotification } from "./notificationHandler";
 
 const PrivateRoute = ({ path, component: Component, ...props }) => {
     const { accessData } = useContext(AuthContext);
-
     if (!accessData.email) {
         return <Component />;
     }

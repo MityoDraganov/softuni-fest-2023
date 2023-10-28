@@ -22,6 +22,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import LearnMore from './Pages/LearnMore/LearnMore';
 import PrivateRoute from './util/RoutePrivate';
 import PaymentSuccessful from './Pages/PaymentSuccessful/PaymentSuccessful';
+import { PaymentRoute } from './util/PaymentRoute';
 function App() {
   return (
     <>
@@ -50,7 +51,9 @@ function App() {
           <Route path="/business/register" element={<PrivateRoute component={BusinessSignUp} />} />
           <Route path="/business/products" element={<RouteGuard component={Products} />} />
           <Route path="/learn-more" element={<LearnMore />} />
-          <Route path="/payment-successful" element={<PaymentSuccessful />} />
+
+
+          <Route path="/payment-successful" element={<PaymentRoute component={PaymentSuccessful} />} />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </AuthProvider>
