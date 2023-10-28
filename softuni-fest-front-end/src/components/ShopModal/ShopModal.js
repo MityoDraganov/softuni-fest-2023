@@ -1,8 +1,14 @@
 import { coinbaseCheckout, stripeCheckout } from "../../services/requests"
 import styles from "./ShopModal.module.css"
 
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faBitcoin } from '@fortawesome/free-brands-svg-icons';
+
+import { faStripe } from '@fortawesome/free-brands-svg-icons'; // If available
+
+
 
 //contexts
 import { useContext } from "react";
@@ -52,28 +58,34 @@ export const ShopModal = ({ product, closeModal }) => {
                 <p>${product.price.toFixed(2)}</p>
 
                 {accessData.accessToken ?
-                    (
+                    (product.priceId === null ? (
                         <div className={styles["modal-actions"]}>
-                            <button onClick={handleStripePayment}>Pay with Stripe</button> 
-                            <button onClick={handleCoinbasePayment}>Pay with crypto</button>
+                            <button onClick={handleStripePayment}>
+                                Pay with <FontAwesomeIcon icon={faStripe} />
+                            </button>
+
+                            <button onClick={handleCoinbasePayment}>
+                                <FontAwesomeIcon icon={faBitcoin} /> Pay with coinbase
+                            </button>
                         </div>
-                    )
-                    :
-                    (
+                    ) : (
+                        <div className={styles["modal-service"]}>
+                            <button onClick={handleStripePayment}>
+                                Pay with <FontAwesomeIcon icon={faStripe} />
+                            </button>
+                            <p>This is a subscription service. You can only pay for it with stripe</p>
+                        </div>
+                    )) : (
                         <div className={styles["modal-info"]}>
                             <p>Only logged in users can make purchases!</p>
-
                             <p className={styles["modal-nav"]}>
                                 <Link to={"/users/login"}>
                                     Click here to log in
                                 </Link>
                             </p>
                         </div>
-                    )
-                }
+                    )}
             </div>
-
-
-        </div>
+        </div >
     )
 }

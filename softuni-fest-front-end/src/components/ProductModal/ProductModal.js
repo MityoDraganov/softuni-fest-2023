@@ -38,7 +38,7 @@ export const ProductModal = ({ CloseModal, mode, onChangeHandler, values, handle
 
                 </div>
 
-                <div className={styles["subscription-container"]}>
+            <div className={styles["subscription-container"]}>
 
                     <div className={styles["toggler-wrapper"]}>
                         <input
