@@ -54,10 +54,6 @@ router.get('/getByOwner/:id', objectIdValidator(), async (req, res) => {
     }
 });
 
-
-
-
-
 router.put('/edit/:id', isBusiness(), objectIdValidator(), async (req, res) => {
 
     const { name, description, price, subscription } = req.body;

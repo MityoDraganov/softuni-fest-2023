@@ -14,8 +14,12 @@ const userSchema = new Schema({
     firstName: { type: String, required: [true, 'Name is required'] },
     lastName: { type: String, required: [true, 'Last name is required'] },
     hashedPassword: { type: String, required: true },
-    subscriptions : [{ type: Schema.Types.ObjectId, ref: 'Product' }],
-    purchases : [{ type: Schema.Types.ObjectId, ref: 'Product' }],
+    purchases: [
+        {
+            product: { type: Schema.Types.ObjectId, ref: 'Product' },
+            paidWith: { type: String, required: true } // You can customize this field
+        }
+    ],
 });
 
 userSchema.index(

@@ -13,7 +13,7 @@ function isGuest() {
         if (!req.user) {
             next();
         } else {
-            res.status(400).json({ message: 'You are already signed in' });
+            res.status(400).json({ message: 'You are already signed in!' });
         }
     };
 }

@@ -8,8 +8,6 @@ const {
 } = require('../services/businesses');
 const mapErrors = require('../utils/mapper');
 
-
-
 router.post('/register', isGuest(), async (req, res) => {
     try {
         if (

@@ -1,7 +1,6 @@
 const Product = require('../models/Product');
 const { createPrice, deletePrice } = require('./stripe');
 
-
 async function getAll() {
     return Product.find({})
         .populate({

@@ -1,19 +1,20 @@
-
-
 const { getBusinessById } = require("../services/businesses");
 const { getUserById } = require("../services/users");
 
-// }
-async function addPurchaseHistory(customerId, productId) {
+async function addPurchaseHistory(customerId, productId, paymentMethod) {
     try {
         const user = await getUserById(customerId);
         const business = await getBusinessById(customerId);
+        const purchaseInfo = {
+            product: productId,
+            paidWith: paymentMethod
+        };
         if(!user){
-            business.purchases.push(productId);
+            business.purchases.push(purchaseInfo);
             await business.save();
             return business.purchases;
         }else{
-            user.purchases.push(productId);
+            user.purchases.push(purchaseInfo);
             await user.save();
             return user.purchases;
         }

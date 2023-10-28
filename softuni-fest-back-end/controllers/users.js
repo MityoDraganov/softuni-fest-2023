@@ -6,10 +6,8 @@ const {
     login,
     logout,
 } = require('../services/users');
-const { getPurchaseHistory } = require('../utils/addPurchaseHistory');
+const { getPurchaseHistory } = require('../utils/purchaseHistory');
 const mapErrors = require('../utils/mapper');
-
-
 
 router.post('/register', isGuest(), async (req, res) => {
     try {

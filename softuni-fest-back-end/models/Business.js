@@ -1,8 +1,6 @@
 const { model, Schema } = require('mongoose');
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
-
 const businessSchema = new Schema({
     companyName: { type: String, required: [true, 'Company name is required'] },
     email: {
@@ -14,8 +12,12 @@ const businessSchema = new Schema({
         }
     },
     hashedPassword: { type: String, required: true },
-    subscriptions : [{ type: Schema.Types.ObjectId, ref: 'Product' }],
-    purchases : [{ type: Schema.Types.ObjectId, ref: 'Product' }],
+    purchases: [
+        {
+            product: { type: Schema.Types.ObjectId, ref: 'Product' },
+            paidWith: { type: String, required: true } // You can customize this field
+        }
+    ],
 });
 
 businessSchema.index(
