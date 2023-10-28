@@ -17,7 +17,8 @@ const userSchema = new Schema({
     purchases: [
         {
             product: { type: Schema.Types.ObjectId, ref: 'Product' },
-            paidWith: { type: String } 
+            paidWith: { type: String },
+            purchaseDate: { type: Date, default: Date.now }
         }
     ]
 });

@@ -46,8 +46,8 @@ router.post('/pay/coinbase/:id', objectIdValidator(), async (req, res) => {
             throw new Error('Coinbase does not support subscriptions');
         }
         const charge = await coinbase.createCharge(product, req.user._id);
+        addPurchaseHistory(req.user._id, product._id, "coinbase")
         res.json({ id: charge.id, url: charge.hosted_url });
-        addPurchaseHistory(productMetadata.customer_id, productMetadata.product_id, "coinbase")
 
     } catch (e) {
         console.log(e);
