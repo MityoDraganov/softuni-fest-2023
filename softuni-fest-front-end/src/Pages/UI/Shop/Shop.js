@@ -2,14 +2,15 @@
 import styles from "./Shop.module.css"
 
 import { Search } from "../../../components/Search/Search"
-import { getAllProducts } from "../../../services/requests"
+import { getAllProducts, getProductById } from "../../../services/requests"
 import { useEffect, useState } from "react"
 
 import { Product } from "../../../components/Product/Product"
 import { ShopModal } from "../../../components/ShopModal/ShopModal"
+import { useParams } from "react-router-dom"
 
 export const Shop = () => {
-
+    const {id} = useParams()
     const [selectedProduct, setSelectedProduct] = useState({
         name: "",
         price: 0,
@@ -33,8 +34,16 @@ export const Shop = () => {
         console.log(data);
         setProducts(data)
     }
+    const getProductByIdFunc = async (id) => {
+        const data = await getProductById(id)
+        console.log(data);
+        setSelectedProduct(data)
+    }
 
     useEffect(() => {
+        if(id){
+            getProductByIdFunc(id)
+        }
         getProducts()
     }, [])
 
