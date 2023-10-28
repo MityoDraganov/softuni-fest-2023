@@ -13,10 +13,13 @@ export const Product = ({ product, openModal, selectedProduct }) => {
     return (
         <div className={`${styles["container"]} ${selectedProduct.name !== "" ? styles["blur-background"] : ""}`}>
             <div className={styles["info-container"]}>
+                
                 {product.priceId !== null &&
                 <div className={`${styles["subscription-mark-container"]} ${selectedProduct.name !== "" ? styles["blur-background"] : ""}`}>
                     <FontAwesomeIcon icon={faCheck} />
-                    <div className={styles["subscription-tooltip"]}>subscription service</div>
+                    {selectedProduct.name === "" &&
+                        <div className={styles["subscription-tooltip"]}>subscription service</div>
+                    }
                 </div>
                 }
                 <h1>{product.name}</h1>
