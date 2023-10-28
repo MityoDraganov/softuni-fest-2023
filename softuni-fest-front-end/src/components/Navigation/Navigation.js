@@ -9,7 +9,6 @@ import styles from "./Navigation.module.css";
 export const Navigation = () => {
     const navigate = useNavigate()
     const { setAccessData } = useContext(AuthContext)
-
     const handleLogout = (e) => {
         e.preventDefault()
         setAccessData({ isBusiness: false })
@@ -30,6 +29,9 @@ export const Navigation = () => {
         accessData.isBusiness ? (
             <nav className={styles.container}>
                 <ul>
+                    <li className={isActive("/")}>
+                        <Link to="/">Home</Link>
+                    </li>
                     <li className={isActive("/business/products")}>
                         <Link to="/business/products">Products</Link>
                     </li>
@@ -38,7 +40,9 @@ export const Navigation = () => {
                 <ul className={styles["nav-auth"]}>
 
                     <li>
-                        <a onClick={handleLogout}>Logout</a>
+                        <button onClick={handleLogout}>
+                            Logout
+                        </button>
                     </li>
                     {/* <div>
                     <div className={styles["pfp-container"]}>
