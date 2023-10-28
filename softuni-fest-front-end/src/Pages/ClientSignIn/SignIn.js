@@ -3,8 +3,10 @@ import styles from './SignIn.module.css';
 import { loginUser } from '../../services/requests';
 import { AuthContext } from '../../contexts/AuthContext';
 import { errorNotification, successNotification } from '../../util/notificationHandler';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
+    const navigate = useNavigate()
     const [credentials, setCredentials] = useState({ firstName: "", lastName: "", email: "", password: "", rePassword: "" });
     const { setAccessData } = useContext(AuthContext)
     const handleSubmit = async (e) => {
@@ -15,6 +17,7 @@ const SignIn = () => {
             setAccessData(response)
             successNotification("Login Successful")
             localStorage.setItem('access_info', JSON.stringify(response));
+            navigate('/')
         } catch (err) {
             errorNotification(err.message)
         }
