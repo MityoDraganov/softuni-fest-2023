@@ -20,16 +20,7 @@ export const ShopModal = ({ product, closeModal }) => {
 
     return (
         <div className={styles["container"]}>
-<<<<<<< Updated upstream
-            <h1>{product.name}</h1>
-            <h2>{product.owner.companyName}</h2>
-            <p>{product.price}</p>
-            <p>{product.description}</p>
 
-            <div className={styles["modal-actions"]}>
-                <button onClick={handleCoinbasePayment}>Pay with crypto</button>
-                <button onClick={handleStripePayment}>Pay with Stripe</button>
-=======
 
 
             <div>
@@ -46,8 +37,8 @@ export const ShopModal = ({ product, closeModal }) => {
                 <p>${product.price.toFixed(2)}</p>
 
                 <div className={styles["modal-actions"]}>
-                    <button>Pay with crypto</button>
-                    <button>Pay with Stripe</button>
+                    <button onClick={handleCoinbasePayment}>Pay with crypto</button>
+                    <button onClick={handleStripePayment}>Pay with Stripe</button>
                 </div>
 
             </div>
@@ -58,7 +49,6 @@ export const ShopModal = ({ product, closeModal }) => {
                     <FontAwesomeIcon icon={faTimes} />
                 </button>
 
->>>>>>> Stashed changes
             </div>
         </div>
     )
