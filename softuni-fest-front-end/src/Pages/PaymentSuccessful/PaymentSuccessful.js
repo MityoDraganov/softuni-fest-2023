@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './PaymentSuccessful.module.css';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const PaymentSuccessful = () => {
+    const navigate = useNavigate()
+    useEffect(() => {
+        setTimeout(() => {
+            navigate('/')
+        }, 6000);
+    }, [navigate])
     return (
         <div className={styles.success}>
 
@@ -19,9 +25,6 @@ const PaymentSuccessful = () => {
                 If you have any additional questions or need assistance,
                 please contact our support team.
             </p>
-
-            <Link to="/" className={styles.btn}>Return to Home</Link>
-
         </div>
     )
 }
