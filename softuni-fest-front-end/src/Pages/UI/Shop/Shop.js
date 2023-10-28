@@ -13,6 +13,8 @@ export const Shop = () => {
     const [searchValue, setSearchValue] = useState("")
     const [products, setProducts] = useState([])
 
+    const [productsByBussiness, setProductsByBussiness] = useState([])
+
     const onChangeHandler = (e) => {
         setSearchValue(e.target.value);
     };
@@ -23,9 +25,9 @@ export const Shop = () => {
         setProducts(data)
     }
 
-    const getBussiness = async (bussinessId) => {
+    const searchBussiness = async (bussinessId) => {
         const data = await getProductsByBusinessId(bussinessId)
-        setProducts(data)
+        setProductsByBussiness(data)
     }
 
     useEffect(() => {
@@ -49,6 +51,7 @@ export const Shop = () => {
                 <Search
                     onInputChange={onChangeHandler}
                     searchValue={searchValue}
+                    searchBussiness={searchBussiness}
                 />
 
                 <ul>
@@ -66,7 +69,7 @@ export const Shop = () => {
             </div>
 
             <div className={styles["products-container"]}>
-                {filteredProducts.map((product) => (
+                {productsByBussiness.map((product) => (
                     <Product
                         key={product._id}
                         product={product}

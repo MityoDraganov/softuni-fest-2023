@@ -3,16 +3,20 @@ import styles from './SignUp.module.css';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { registerUser } from '../../services/requests';
+import { errorNotification } from '../../util/notificationHandler';
 const SignUp = () => {
     const { setAccessData } = useContext(AuthContext)
     const [credentials, setCredentials] = useState({ firstName: "", lastName: "", email: "", password: "", rePassword: "" });
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(credentials)
+        try{
         const response = await registerUser(credentials)
-        console.log(response.ok)
+
         setAccessData(response)
         localStorage.setItem('access_info', JSON.stringify(response));
+        } catch(err){
+            errorNotification(err.message)
+        }
     }
 
     return (
