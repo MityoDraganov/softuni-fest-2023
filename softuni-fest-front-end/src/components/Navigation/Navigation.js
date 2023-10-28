@@ -35,16 +35,14 @@ export const Navigation = () => {
                         <Link to="/">Home</Link>
                     </li>
                     <li className={isActive("/business/products")}>
-                        <Link to="/business/products">Products</Link>
+                        <Link to="/business/products">Dashboard</Link>
                     </li>
                 </ul>
 
                 <ul className={styles["nav-auth"]}>
 
                     <li>
-                        <button onClick={handleLogout}>
-                            Logout
-                        </button>
+                        <Link onClick={handleLogout}>Logout</Link>
                     </li>
                     {/* <div>
                     <div className={styles["pfp-container"]}>
