@@ -15,13 +15,18 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/create', isBusiness(), async (req, res) => {
-    const { name, description, price } = req.body;
-    if(!name || !description || !price || !req.user || typeof price !== 'number'){
+    const { name, description, price, subscription } = req.body;
+    if (!name || !description || !price || !req.user || typeof price !== 'number') {
         res.status(400).json({ message: 'All fields are required and price must be a number' });
         return;
     }
     try {
-        const result = await create(name, description, price, req.user._id);
+        if (subscription) {
+            const result = await create(name, description, price, req.user._id, true);
+            res.status(201).json(result);
+            return;
+        }
+        const result = await create(name, description, price, req.user._id, false);
         res.status(201).json(result);
     } catch (err) {
         const error = mapErrors(err);
@@ -55,13 +60,13 @@ router.get('/getByOwner/:id', objectIdValidator(), async (req, res) => {
 
 router.put('/edit/:id', isBusiness(), objectIdValidator, async (req, res) => {
     const { name, description, price } = req.body;
-    if(!name || !description || !price || !req.user || typeof price !== 'number'){
+    if (!name || !description || !price || !req.user || typeof price !== 'number') {
         res.status(400).json({ message: 'All fields are required and price must be a number' });
         return;
     }
     try {
         const record = await getById(req.params.id);
-        if(!record){
+        if (!record) {
             throw new Error('Product not found');
         }
         if (record.owner != req.user._id) {
@@ -84,10 +89,11 @@ router.put('/edit/:id', isBusiness(), objectIdValidator, async (req, res) => {
 router.delete('/delete/:id', isBusiness(), objectIdValidator(), async (req, res) => {
     try {
         const record = await getById(req.params.id);
-        if(!record){
+        console.log(record);
+        if (!record) {
             throw new Error('Product not found');
         }
-        if (record.owner != req.user._id) {
+        if (record.owner.id != req.user._id) {
             res.status(403).json({ message: 'You are not allowed to delete this record' });
             return;
         }

@@ -1,5 +1,5 @@
 const { getById } = require('../services/products');
-const { createSession } = require('../services/stripe');
+const { createSession, createSubscriptionSession, createProduct } = require('../services/stripe');
 const coinbase = require('../services/coinbase');
 const objectIdValidator = require('../middlewares/objectIdValidator');
 // const opennode = require('../services/opennode');
@@ -13,16 +13,32 @@ router.post('/pay/:id', objectIdValidator(), async (req, res) => {
             throw new Error('You need to be logged in to make a payment');
         }
         const product = await getById(req.params.id);
-        const session = await createSession(product);
-        //
-        res.json({ id: session.id, url: session.url });
-
+        if (product.priceId) {
+            const session = await createSubscriptionSession(product);
+            res.json({ id: session.id, url: session.url });
+        } else {
+            const session = await createSession(product);
+            res.json({ id: session.id, url: session.url });
+        }
     } catch (e) {
         console.log(e);
-        res.status(400).json({ message: 'Something went wrong' });
+        res.status(400).json({ message: 'Something went wrong ' + e.message });
+
     }
 }
 )
+
+router.post('/createPrice/:id', async (req, res) => {
+    try {
+        const product = await getById(req.params.id);
+        const price = await createProduct(product.name, product.price)
+        console.log(price);
+        res.json(price);
+    } catch (e) {
+        console.log(e);
+        res.status(400).json({ message: 'Something went wrong ' + e.message });
+    }
+});
 
 router.post('/pay/coinbase/:id', objectIdValidator(), async (req, res) => {
     try {
@@ -35,7 +51,7 @@ router.post('/pay/coinbase/:id', objectIdValidator(), async (req, res) => {
 
     } catch (e) {
         console.log(e);
-        res.status(400).json({ message: 'Something went wrong' });
+        res.status(400).json({ message: 'Something went wrong ' + e.message });
     }
 });
 
