@@ -1,22 +1,25 @@
 import React, { useContext, useState } from 'react';
 import styles from './SignUp.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { registerUser } from '../../services/requests';
-import { errorNotification } from '../../util/notificationHandler';
+import { errorNotification, successNotification } from '../../util/notificationHandler';
 const SignUp = () => {
+    const navigate = useNavigate();
     const { setAccessData } = useContext(AuthContext)
     const [credentials, setCredentials] = useState({ firstName: "", lastName: "", email: "", password: "", rePassword: "" });
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try{
-        if(credentials.password !== credentials.rePassword){
-            throw new Error("Passwords do not match")
-        }
-        const response = await registerUser(credentials)
-        setAccessData(response)
-        localStorage.setItem('access_info', JSON.stringify(response));
-        } catch(err){
+        try {
+            if (credentials.password !== credentials.rePassword) {
+                throw new Error("Passwords do not match")
+            }
+            const response = await registerUser(credentials)
+            successNotification("Registration Successful")
+            setAccessData(response)
+            localStorage.setItem('access_info', JSON.stringify(response));
+            navigate('/')
+        } catch (err) {
             errorNotification(err.message)
         }
     }
@@ -26,7 +29,7 @@ const SignUp = () => {
             <form onSubmit={handleSubmit}>
                 <h1>Sign Up</h1>
                 <div className={styles.flex}>
-                    <div style={{"marginRight" : "25px"}}>
+                    <div style={{ "marginRight": "25px" }}>
                         <label>
                             First Name
                         </label>
