@@ -5,15 +5,19 @@ import { Routes, Route, } from "react-router-dom"
 import { Navigation } from './components/Navigation/Navigation';
 
 //user imports
+import { Shop } from './Pages/UI/Shop/Shop';
+import SignUp from './Pages/ClientSignUp/SignUp';
+import SignIn from './Pages/ClientSignIn/SignIn';
 
 //business imports
 import { Products } from './Pages/AdminPanel/Products/Products';
-import SignUp from './Pages/ClientSignUp/SignUp';
-import SignIn from './Pages/ClientSignIn/SignIn';
 import BusinessSignUp from './Pages/BusinessSignUp/BusinessSignUp';
+
+
 import { AuthProvider } from './contexts/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import Home from './Pages/HomePage/HomePage';
+import { RouteGuard } from './util/RouteGuard';
 
 function App() {
   return (
@@ -35,11 +39,13 @@ function App() {
         <Routes>
           <Route path="/users/register" element={<SignUp />} />
           <Route path="/users/login" element={<SignIn />} />
+          <Route path="/users/shop" element={<Shop />} />
+
           <Route path="/" element={<Home />} />
 
           <Route path="/business/register" element={<BusinessSignUp />} />
 
-          <Route path="/business/products" element={<Products />} />
+          <Route path="/business/products" element={<RouteGuard component={Products}/>} />
         </Routes>
       </AuthProvider>
     </>

@@ -1,8 +1,3 @@
-body {
-    height: 100vh; /* Set body height to viewport height */
-    margin: 0; /* Remove default margin */
-}
-
 .container {
     background-color: #ffffff;
     width: 80%;
@@ -19,12 +14,9 @@ body {
     display: flex;
     flex-direction: row;
 
-    gap: 10%;
+    gap: 30%;
 }
 
-.nav-auth{
-    gap: 30% !important
-}
 
 
 
@@ -45,11 +37,13 @@ li a {
     width: 40%;
     display: flex;
     flex-direction: row;
-    align-items: center; /* Vertically center content */
+    align-items: center;
+    /* Vertically center content */
 }
 
 .pfp-container {
-    height: 100%; /* Set height to 100% of parent container */
+    height: 100%;
+    /* Set height to 100% of parent container */
     display: flex;
     align-items: center;
 

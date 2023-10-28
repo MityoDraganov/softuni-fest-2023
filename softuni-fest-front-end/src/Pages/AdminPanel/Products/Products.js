@@ -1,12 +1,12 @@
 import styles from "./Products.module.css";
 import { useContext, useEffect, useState } from "react";
 import { ProductModal } from "../../../components/ProductModal/ProductModal";
-import { createProduct, editProduct, getProductsByBusinessId } from "../../../services/requests";
+import { createProduct, deleteProduct, editProduct, getProductsByBusinessId } from "../../../services/requests";
 
 // import { ProductRow } from "../../../components/productRow/ProductRow";
-import { ProductRow } from "../../../components/productRow/productRow";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { errorNotification } from "../../../util/notificationHandler";
+import { ProductRow } from "../../../components/ProductRow/ProductRow";
 
 export const Products = () => {
     const { accessData } = useContext(AuthContext)
@@ -24,7 +24,7 @@ export const Products = () => {
     });
 
     const getProducts = async () => {
-        console.log(accessData);
+        console.log("fetched");
         if (!accessData._id) {
             return
         }
@@ -46,6 +46,7 @@ export const Products = () => {
 
         try {
             const data = await createProduct(values);
+            getProducts()
             setIsOpen(false)
         } catch (err) {
             errorNotification(err.message)
@@ -54,6 +55,7 @@ export const Products = () => {
 
     const editHandler = async (e, productId) => {
         e.preventDefault();
+
         try {
             const data = await editProduct(productId, values);
             getProducts()
@@ -64,12 +66,30 @@ export const Products = () => {
         }
     };
 
+    const handleDeleteClick = (e, productId) => {
+        const confirmed = window.confirm("Are you sure you want to delete this product?");
+        if (confirmed) {
+            deleteHandler(e, productId);
+        }
+    };
+
+    const deleteHandler = async(e, productId) => {
+        e.preventDefault()
+
+        try{
+            const data = await deleteProduct(productId)
+            getProducts()
+        }catch(err){
+            errorNotification(err.message)
+        }
+    }
+
 
 
     return (
         <>
             <div
-                className={`${styles["container"]} ${isOpen || edittingIndex ? styles["blur-background"] : ""
+                className={`${styles["container"]} ${isOpen || edittingIndex !== null ? styles["blur-background"] : ""
                     }`}
             >
 
@@ -106,11 +126,12 @@ export const Products = () => {
                             <ProductRow
                                 key={index}
                                 product={product}
-                                setEditingIndex={(productId) => {
+                                setEditingIndex={() => {
                                     setEditingIndex(index);
-                                    // Assuming `product._id` is the unique identifier for the product
+
                                     setValues(products[index]);
                                 }}
+                                deleteHandler={(e) => handleDeleteClick(e, product._id)}
                             />
 
 
