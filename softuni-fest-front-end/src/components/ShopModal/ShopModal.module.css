@@ -11,18 +11,12 @@
     border-radius: 8px;
     padding: 20px;
     z-index: 1000; /* Adjust z-index as needed */
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.product-form textarea {
-    width: 102%;
-    height: 100%;
-    padding: 1.5% 1% 1.5% 2%;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    resize: none;
-}
 
 .modal-actions{
     display: flex;
@@ -30,9 +24,40 @@
     gap: 10%
 }
 
+.modal-actions button {
+    
+    display: block;
+    width: 102%;
+    font-size: 16px;
+    border-radius: 15px;
+    padding: 15px;
+    background: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 20px;
+    
+
+}
+
+.modal-actions button:hover {
+    background: rgb(0, 0, 167);
+}
+
+
 .modal-actions .action-deny{
     background-color: #ef233c;
 }
+
+.container p {
+    margin-top: 0;
+}
+
+.container label{
+    font-weight: bold;
+}
+
 
 .container input {
     display: block;
@@ -42,4 +67,25 @@
     outline: none;
     margin-top: 5px;
     padding: 1% 0 1% 2% !important
+}
+
+
+
+.modal-close-container button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 102%;
+    font-size: 16px;
+    border-radius: 15px;
+    padding: 15px;
+    background-color: #ef233c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modal-close-container button:hover {
+    background-color: #d81f35;
 }

@@ -49,7 +49,8 @@ export const Shop = () => {
     }, [id])
 
     return (
-        <div className={styles["container"]}>
+        <div className={`${styles["container"]} ${selectedProduct.name !== "" ? styles["blur-background"] : ""}`}
+        >
             <div className={styles["search-container"]}>
                 <h2>Search</h2>
                 <Search
@@ -84,6 +85,7 @@ export const Shop = () => {
                             key={product._id}
                             product={product}
                             openModal={() => setSelectedProduct(product)}
+                           
                         />
                     ))
                 )}
@@ -92,6 +94,11 @@ export const Shop = () => {
             {selectedProduct.name !== "" && (
                 <ShopModal
                     product={selectedProduct}
+                    closeModal={() => setSelectedProduct({
+                        "name": "",
+                        "price": 0,
+                        "description": ""
+                    })}
                 />
             )}
         </div>

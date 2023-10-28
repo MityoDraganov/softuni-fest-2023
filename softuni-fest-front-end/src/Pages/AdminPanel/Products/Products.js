@@ -93,8 +93,7 @@ export const Products = () => {
     return (
         <>
             <div
-                className={`${styles["container"]} ${isOpen || edittingIndex !== null ? styles["blur-background"] : ""
-                    }`}
+                className={`${styles["container"]} ${isOpen || edittingIndex !== null ? styles["blur-background"] : ""}`}
             >
 
                 <h1>Products</h1>
