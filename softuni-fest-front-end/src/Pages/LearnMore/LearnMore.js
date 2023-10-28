@@ -32,7 +32,6 @@ export default function LearnMore() {
                 Get in touch to learn more about using our payment platform. Our team is ready to help you
                 accept payments and grow your business.
             </p>
-
         </div>
     );
 }
