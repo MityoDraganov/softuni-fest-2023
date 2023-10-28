@@ -1,0 +1,18 @@
+.success {
+    text-align: center;
+    padding: 60px;
+}
+
+.checkMark {
+    width: 72px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #1b7ced;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
