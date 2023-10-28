@@ -17,6 +17,7 @@ import BusinessSignUp from './Pages/BusinessSignUp/BusinessSignUp';
 import { AuthProvider } from './contexts/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import Home from './Pages/HomePage/HomePage';
+import { RouteGuard } from './util/RouteGuard';
 
 function App() {
   return (
@@ -44,7 +45,7 @@ function App() {
 
           <Route path="/business/register" element={<BusinessSignUp />} />
 
-          <Route path="/business/products" element={<Products />} />
+          <Route path="/business/products" element={<RouteGuard component={Products}/>} />
         </Routes>
       </AuthProvider>
     </>
