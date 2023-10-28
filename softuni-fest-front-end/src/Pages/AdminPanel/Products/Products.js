@@ -26,12 +26,21 @@ export const Products = () => {
 
     const getProducts = useCallback(async () => {
         if (!accessData._id) {
-            return
+            return;
         }
-        const data = await getProductsByBusinessId(accessData._id)
-        console.log(data);
-        setProducts(data)
-    }, [accessData])
+    
+        try {
+            const data = await getProductsByBusinessId(accessData._id);
+            const updatedData = data.map(product => ({
+                ...product,
+                subscription: product.priceId !== null
+            }));
+            console.log(updatedData);
+            setProducts(updatedData);
+        } catch (error) {
+            console.error(error);
+        }
+    }, [accessData]);
 
     useEffect(() => {
         getProducts()
@@ -63,17 +72,21 @@ export const Products = () => {
 
     const editHandler = async (e, productId) => {
         e.preventDefault();
-
+    
         try {
             const parsedPrice = parseFloat(values.price);
             const editedProduct = await editProduct(productId, {...values, price: parsedPrice});
             console.log(editedProduct);
+    
+            if ('priceId' in editedProduct && editedProduct.priceId !== null) {
+                editedProduct.subscription = true;
+            }
+    
             setProducts((state) => {
                 const newState = [...state]
                 newState[edittingIndex] = editedProduct
                 return newState
             })
-            getProducts()
             setEditingIndex(null)
         } catch (err) {
             errorNotification(err.message)

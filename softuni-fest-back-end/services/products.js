@@ -39,7 +39,16 @@ async function getByIdForEdit(id) {
         });
 }
 
-async function update(existing, item) {
+async function update(existing, item, subscription) {
+    if (subscription) {
+        const priceProd = await createPrice(item.name, item.description, item.price);
+        existing.priceId = priceProd.id;
+    }else{
+        if(existing.priceId){
+            await deletePrice(existing.priceId);
+        }
+        existing.priceId = null;
+    }
     existing.name = item.name;
     existing.description = item.description;
     existing.price = item.price;
