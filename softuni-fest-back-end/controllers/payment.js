@@ -10,7 +10,7 @@ router.post('/pay/:id', async (req, res) => {
     try {
         const product = await getById(req.params.id);
         const session = await createSession(product);
-        res.json({ id: session.id`1`, url: session.url });
+        res.json({ id: session.id, url: session.url });
 
     } catch (e) {
         console.log(e);

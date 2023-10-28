@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
 const Business = require('../models/Business');
+const { validatePassword } = require('../utils/util');
 const blacklist = require('../utils/verifySession').blacklist;
 
 async function register(email, companyName, password) {
@@ -13,6 +14,9 @@ async function register(email, companyName, password) {
     if (existing) {
         throw new Error('Email already exists');
     }
+    if(!validatePassword(password)){
+        throw new Error('Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter and one number')
+    }
 
     const business = new Business({
         email,
@@ -22,29 +26,14 @@ async function register(email, companyName, password) {
 
     await business.save();
 
-    return createSession(business);
-}
-
-async function login(email, password) {
-    const business = await Business.findOne({ email: new RegExp(`^${email}$`, 'i') });
-    if (!business) {
-        throw new Error('Incorrect email or password');
-    }
-
-    const match = await bcrypt.compare(password, business.hashedPassword);
-
-    if (!match) {
-        throw new Error('Incorrect email or password');
-    }
-
-    return createSession(business);
+    return createBusinessSession(business);
 }
 
 function logout(token) {
     blacklist.push(token);
 }
 
-function createSession(business) {
+function createBusinessSession(business) {
     return {
         isBusiness: true,
         email: business.email,
@@ -69,7 +58,6 @@ async function getAll() {
 
 module.exports = {
     register,
-    login,
     logout,
     blacklist,
     getAll,

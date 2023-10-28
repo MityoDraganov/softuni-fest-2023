@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { isGuest } = require('../middlewares/guards');
+const User = require('../models/User');
 const {
     register,
-    login,
     logout,
     getAll,
 } = require('../services/businesses');
@@ -19,6 +19,12 @@ router.post('/register', isGuest(), async (req, res) => {
         ) {
             throw new Error('All fields are required');
         }
+        const existing = await User.findOne({
+            email: new RegExp(`^${email}$`, 'i'),
+        })
+        if (existing) {
+            throw new Error('Email is already registered as a business');
+        }
 
         const result = await register(
             req.body.email.trim().toLowerCase(),
@@ -26,23 +32,6 @@ router.post('/register', isGuest(), async (req, res) => {
             req.body.password.trim()
         );
         res.status(201).json(result);
-    } catch (err) {
-        console.error(err.message);
-        const error = mapErrors(err);
-        res.status(400).json({ message: error });
-    }
-});
-
-router.post('/login', isGuest(), async (req, res) => {
-    try {
-        if (req.body.password.trim() == '' || req.body.email.trim() == '') {
-            throw new Error('Email and password are required');
-        }
-        const result = await login(
-            req.body.email.trim().toLowerCase(),
-            req.body.password.trim()
-        );
-        res.json(result);
     } catch (err) {
         console.error(err.message);
         const error = mapErrors(err);

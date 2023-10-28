@@ -1,19 +1,29 @@
+const req = require('express/lib/request');
 const Product = require('../models/Product');
+const Business = require('../models/Business');
 
 
 async function getAll() {
-    return Product.find({});
+    return Product.find({})
+        .populate({
+            path: 'owner',
+            select: '-hashedPassword' // exclude hashedPassword
+        }).lean();
 }
 
 async function create(name, description, price, owner) {
-    const result = new Product({name, description, price, owner});
+    const result = new Product({ name, description, price, owner });
     await result.save();
 
     return result;
 }
 
 function getById(id) {
-    return Product.findById(id);
+    return Product.findById(id)
+        .populate({
+            path: 'owner',
+            select: '-hashedPassword' // exclude hashedPassword
+        }).lean();;
 }
 
 async function update(existing, item) {
@@ -28,7 +38,7 @@ async function update(existing, item) {
 
 // getByOwner
 async function getByOwner(owner) {
-    return Product.find({owner});
+    return Product.find({ owner });
 }
 
 async function deleteById(id) {

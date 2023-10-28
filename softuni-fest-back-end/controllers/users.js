@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { isGuest } = require('../middlewares/guards');
+const Business = require('../models/Business');
 const {
     register,
     login,
@@ -10,6 +11,7 @@ const mapErrors = require('../utils/mapper');
 
 
 router.post('/register', isGuest(), async (req, res) => {
+
     try {
         if (
             req.body.password.trim() == '' ||
@@ -18,6 +20,12 @@ router.post('/register', isGuest(), async (req, res) => {
             req.body.lastName.trim() == ''
         ) {
             throw new Error('All fields are required');
+        }
+        const existing = await Business.findOne({
+            email: new RegExp(`^${email}$`, 'i'),
+        })
+        if (existing) {
+            throw new Error('Email is already registered as a business');
         }
 
         const result = await register(

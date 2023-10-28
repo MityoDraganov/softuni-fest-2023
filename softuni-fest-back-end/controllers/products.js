@@ -15,6 +15,10 @@ router.get('/', async (req, res) => {
 
 router.post('/create', isBusiness(), async (req, res) => {
     const { name, description, price } = req.body;
+    if(!name || !description || !price || !req.user){
+        res.status(400).json({ message: 'All fields are required' });
+        return;
+    }
     try {
         const result = await create(name, description, price, req.user._id);
         res.status(201).json(result);
@@ -46,6 +50,11 @@ router.get('/getByOwner/:id', async (req, res) => {
 
 
 router.put('/edit/:id', isBusiness(), async (req, res) => {
+    const { name, description, price } = req.body;
+    if(!name || !description || !price || !req.user){
+        res.status(400).json({ message: 'All fields are required' });
+        return;
+    }
     try {
         const record = await getById(req.params.id);
         if(!record){
@@ -55,7 +64,6 @@ router.put('/edit/:id', isBusiness(), async (req, res) => {
             res.status(403).json({ message: 'You are not allowed to edit this record' });
             return;
         }
-        const { name, description, price } = req.body;
         try {
             const result = await update(record, { name, description, price });
             res.status(201).json(result);
