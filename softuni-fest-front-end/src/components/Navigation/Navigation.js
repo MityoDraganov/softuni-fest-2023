@@ -40,7 +40,9 @@ export const Navigation = () => {
                 <ul className={styles["nav-auth"]}>
 
                     <li>
-                        <a onClick={handleLogout}>Logout</a>
+                        <button onClick={handleLogout}>
+                            Logout
+                        </button>
                     </li>
                     {/* <div>
                     <div className={styles["pfp-container"]}>
