@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
 const User = require('../models/User');
+const { validatePassword } = require('../utils/util');
+const Business = require('../models/Business');
 const blacklist = require('../utils/verifySession').blacklist;
 
 async function register(email, firstName, lastName, password) {
@@ -14,6 +16,10 @@ async function register(email, firstName, lastName, password) {
         throw new Error('Email already exists');
     }
 
+    if (!validatePassword(password)) {
+        throw new Error('Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter and one number')
+    }
+
     const user = new User({
         email,
         firstName,
@@ -23,29 +29,38 @@ async function register(email, firstName, lastName, password) {
 
     await user.save();
 
-    return createSession(user);
+    return createUserSession(user);
 }
 
 async function login(email, password) {
     const user = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
-    if (!user) {
+    const business = await Business.findOne({ email: new RegExp(`^${email}$`, 'i') });
+    if (!user && !business) {
         throw new Error('Incorrect email or password');
     }
-
-    const match = await bcrypt.compare(password, user.hashedPassword);
-
-    if (!match) {
-        throw new Error('Incorrect email or password');
+    if (user) {
+        const match = await bcrypt.compare(password, user.hashedPassword);
+        if (!match) {
+            throw new Error('Incorrect email or password');
+        }
+    } else if (business) {
+        const match = await bcrypt.compare(password, business.hashedPassword);
+        if (!match) {
+            throw new Error('Incorrect email or password');
+        }
     }
-
-    return createSession(user);
+    if(user){
+        return createUserSession(user);
+    }else if(business){
+        return createBusinessSession(business);
+    }
 }
 
 function logout(token) {
     blacklist.push(token);
 }
 
-function createSession(user) {
+function createUserSession(user) {
     return {
         isBusiness: false,
         email: user.email,
@@ -58,6 +73,22 @@ function createSession(user) {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 _id: user._id,
+            },
+            JWT_SECRET
+        ),
+    };
+}
+function createBusinessSession(business) {
+    return {
+        isBusiness: true,
+        email: business.email,
+        companyName: business.companyName,
+        _id: business._id,
+        accessToken: jwt.sign(
+            {
+                email: business.email,
+                companyName: business.companyName,
+                _id: business._id,
             },
             JWT_SECRET
         ),
