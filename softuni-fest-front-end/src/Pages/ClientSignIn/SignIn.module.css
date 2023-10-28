@@ -4,22 +4,14 @@
     padding: 20px;
     font-size: 14px;
 }
-.container > label{
+
+.container>label {
     margin-top: 10px;
 }
+
 label {
     display: block;
     margin-bottom: 5px;
-}
-
-input {
-    display: block;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    outline: none;
-    margin-top: 5px;
-    padding: 5px 0px;
 }
 
 button {
@@ -36,7 +28,7 @@ button {
 
 }
 
-.fullWidth{
+.fullWidth {
     width: 460px;
 }
 
@@ -44,16 +36,17 @@ button:hover {
     background: rgb(0, 0, 167);
 }
 
-h1{
+h1 {
     margin: 30px 0px 30px 0px;
 }
 
 .company,
-.email{
+.email {
     display: flex;
     flex-direction: column;
 }
-.flex{
+
+.flex {
     display: flex;
     justify-content: space-between;
 }
@@ -61,4 +54,14 @@ h1{
 .label_business {
     text-decoration: none;
     color: blue;
+}
+
+.input {
+    width: 70%;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    margin-top: 5px;
+    padding: 5px 10px !important;
 }

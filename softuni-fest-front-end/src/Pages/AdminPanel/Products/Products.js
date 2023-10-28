@@ -4,9 +4,9 @@ import { ProductModal } from "../../../components/ProductModal/ProductModal";
 import { createProduct, deleteProduct, editProduct, getProductsByBusinessId } from "../../../services/requests";
 
 // import { ProductRow } from "../../../components/productRow/ProductRow";
-import { ProductRow } from "../../../components/productRow/ProductRow";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { errorNotification } from "../../../util/notificationHandler";
+import { ProductRow } from "../../../components/productRow/productRow";
 
 export const Products = () => {
     const { accessData } = useContext(AuthContext)
