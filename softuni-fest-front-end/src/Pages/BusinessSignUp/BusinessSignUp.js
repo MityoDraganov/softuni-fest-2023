@@ -25,13 +25,13 @@ const BusinessSignUp = () => {
             <label>
               Company Name
             </label>
-            <input type="text" name="company" value={credentials.companyName} onChange={(e) => setCredentials(state => ({ ...state, companyName: e.target.value }))} />
+            <input type="text" name="company" value={credentials.companyName} onChange={(e) => setCredentials(state => ({ ...state, companyName: e.target.value }))} className={styles.input}/>
           </div>
           <div>
             <label>
               Email
             </label>
-            <input type="email" name="email" value={credentials.email} onChange={(e) => setCredentials(state => ({ ...state, email: e.target.value }))} />
+            <input type="email" name="email" value={credentials.email} onChange={(e) => setCredentials(state => ({ ...state, email: e.target.value }))}  className={styles.input}/>
           </div>
         </div>
 

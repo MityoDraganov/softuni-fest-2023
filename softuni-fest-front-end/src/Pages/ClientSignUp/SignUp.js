@@ -23,28 +23,28 @@ const SignUp = () => {
                     <div >
                         <label>
                             First Name
-
-                            <input type="text" name="firstname" value={credentials.firstName} onChange={(e) => setCredentials(state => ({ ...state, firstName: e.target.value }))}
-                                required
-                                minLength={3}
-                                maxLength={20}
-                                pattern="[a-zA-Z]+"
-                                title="Only letters are allowed"
-                                size={20} />
                         </label>
+                        <input type="text" name="firstname" value={credentials.firstName} onChange={(e) => setCredentials(state => ({ ...state, firstName: e.target.value }))}
+                            required
+                            minLength={3}
+                            maxLength={20}
+                            pattern="[a-zA-Z]+"
+                            title="Only letters are allowed"
+                            size={20}
+                            className={styles.input} />
                     </div>
                     <div>
                         <label>
                             Last Name
-
-                            <input type="text" name="lastname" value={credentials.lastName} onChange={(e) => setCredentials(state => ({ ...state, lastName: e.target.value }))}
-                                required
-                                minLength={3}
-                                maxLength={20}
-                                pattern="[a-zA-Z]+"
-                                title="Only letters are allowed"
-                                size={20} />
                         </label>
+                        <input type="text" name="lastname" value={credentials.lastName} onChange={(e) => setCredentials(state => ({ ...state, lastName: e.target.value }))}
+                            required
+                            minLength={3}
+                            maxLength={20}
+                            pattern="[a-zA-Z]+"
+                            title="Only letters are allowed"
+                            size={20}
+                            className={styles.input} />
                     </div>
                 </div>
 
@@ -67,7 +67,7 @@ const SignUp = () => {
             </form>
             <label>
                 <Link to={"/business/register"} className={styles.label_business}>
-                Sign Up As Business 
+                    Sign Up As Business
                 </Link>
             </label>
         </div>
