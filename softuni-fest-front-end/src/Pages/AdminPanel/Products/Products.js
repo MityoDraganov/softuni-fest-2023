@@ -6,7 +6,7 @@ import { createProduct, deleteProduct, editProduct, getProductsByBusinessId } fr
 // import { ProductRow } from "../../../components/productRow/ProductRow";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { errorNotification } from "../../../util/notificationHandler";
-import { ProductRow } from "../../../components/productRow/productRow";
+import { ProductRow } from "../../../components/ProductRow/ProductRow";
 
 export const Products = () => {
     const { accessData } = useContext(AuthContext)
