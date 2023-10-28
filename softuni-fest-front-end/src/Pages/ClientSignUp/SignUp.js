@@ -20,7 +20,7 @@ const SignUp = () => {
             <form onSubmit={handleSubmit}>
                 <h1>Sign Up</h1>
                 <div className={styles.flex}>
-                    <div >
+                    <div style={{"marginRight" : "25px"}}>
                         <label>
                             First Name
                         </label>
