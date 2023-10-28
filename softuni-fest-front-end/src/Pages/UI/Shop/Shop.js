@@ -2,7 +2,7 @@
 import styles from "./Shop.module.css"
 
 import { Search } from "../../../components/Search/Search"
-import { getAllProducts, getProductsByBusinessId } from "../../../services/requests"
+import { getAllProducts } from "../../../services/requests"
 import { useEffect, useState } from "react"
 
 import { Product } from "../../../components/Product/Product"
@@ -18,11 +18,14 @@ export const Shop = () => {
 
     const [searchValue, setSearchValue] = useState("")
     const [products, setProducts] = useState([])
-
-    const [productsByBussiness, setProductsByBussiness] = useState([])
+    const [filteredProducts, setFilteredProducts] = useState([])
 
     const onChangeHandler = (e) => {
         setSearchValue(e.target.value);
+        // set filtered products
+        setFilteredProducts(products.filter((product) => {
+            return product.owner.companyName.toLowerCase().includes(searchValue.toLowerCase());
+        }));
     };
 
     const getProducts = async () => {
@@ -31,25 +34,9 @@ export const Shop = () => {
         setProducts(data)
     }
 
-    const searchBussiness = async (bussinessId) => {
-        console.log("id")
-        console.log(bussinessId);
-        const data = await getProductsByBusinessId(bussinessId)
-        console.log(data);
-        setProductsByBussiness(data)
-    }
-
     useEffect(() => {
         getProducts()
     }, [])
-
-
-
-    const filteredProducts = products.filter((product) => {
-        return product.owner.companyName.toLowerCase().includes(searchValue.toLowerCase());
-    });
-
-
 
     return (
         <div className={styles["container"]}>
@@ -58,9 +45,8 @@ export const Shop = () => {
                 <Search
                     onInputChange={onChangeHandler}
                     searchValue={searchValue}
-                    searchBussiness={() => searchBussiness(filteredProducts[0]?.owner?._id)}
                 />
-                <ul>
+                {/* <ul>
                     {searchValue && filteredProducts.map((product, index) => (
                         searchValue !== product.name &&
                         <li
@@ -70,17 +56,27 @@ export const Shop = () => {
                             {product.name}
                         </li>
                     ))}
-                </ul>
+                </ul> */}
             </div>
     
             <div className={styles["products-container"]}>
-                {products.map((product) => (
-                    <Product
-                        key={product._id}
-                        product={product}
-                        openModal={() => setSelectedProduct(product)}
-                    />
-                ))}
+                {searchValue !== "" ? (
+                    filteredProducts.map((product) => (
+                        <Product
+                            key={product._id}
+                            product={product}
+                            openModal={() => setSelectedProduct(product)}
+                        />
+                    ))
+                ) : (
+                    products.map((product) => (
+                        <Product
+                            key={product._id}
+                            product={product}
+                            openModal={() => setSelectedProduct(product)}
+                        />
+                    ))
+                )}
             </div>
     
             {selectedProduct.name !== "" && (
