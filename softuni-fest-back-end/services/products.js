@@ -62,7 +62,7 @@ async function deleteById(product) {
     if(product.priceId){
         await deletePrice(product.priceId);
     }
-    await Product.findByIdAndDelete(id);
+    await Product.findByIdAndDelete(product._id);
 }
 
 

@@ -64,15 +64,19 @@ async function deletePrice(id) {
         // Retrieve the price to get the associated product ID
         const price = await stripe.prices.retrieve(id);
 
-        // Delete the price
-        await stripe.prices.remove(id);
+        // Archive the product (set it to inactive or similar)
+        await stripe.products.update(price.product, {
+            active: false
+        });
 
-        // Delete the associated product
-        await stripe.products.del(price.product);
+        // Archive the price (set it to inactive or similar)
+        await stripe.prices.update(id, {
+            active: false
+        });
 
-        console.log(`Price (ID: ${id}) and associated product deleted.`);
+        console.log(`Price (ID: ${id}) and associated product archived.`);
     } catch (error) {
-        console.error(`Error deleting price and product: ${error.message}`);
+        console.error(`Error archiving price and product: ${error.message}`);
     }
 }
 
