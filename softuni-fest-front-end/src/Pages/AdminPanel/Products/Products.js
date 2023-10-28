@@ -24,7 +24,6 @@ export const Products = () => {
     });
 
     const getProducts = async () => {
-        console.log("fetched");
         if (!accessData._id) {
             return
         }
@@ -46,6 +45,7 @@ export const Products = () => {
 
         try {
             const data = await createProduct(values);
+            setProducts((state) => [...state, data])
             getProducts()
             setIsOpen(false)
         } catch (err) {
@@ -57,7 +57,12 @@ export const Products = () => {
         e.preventDefault();
 
         try {
-            const data = await editProduct(productId, values);
+            const editedProduct = await editProduct(productId, values);
+            setProducts((state) => {
+                const newState = [...state]
+                newState[edittingIndex] = editedProduct
+                return newState
+            })
             getProducts()
             setEditingIndex(null)
         } catch (err) {
@@ -70,16 +75,17 @@ export const Products = () => {
         const confirmed = window.confirm("Are you sure you want to delete this product?");
         if (confirmed) {
             deleteHandler(e, productId);
+            setProducts((state) => state.filter((product) => product._id !== productId));
         }
     };
 
-    const deleteHandler = async(e, productId) => {
+    const deleteHandler = async (e, productId) => {
         e.preventDefault()
 
-        try{
-            const data = await deleteProduct(productId)
+        try {
+            await deleteProduct(productId)
             getProducts()
-        }catch(err){
+        } catch (err) {
             errorNotification(err.message)
         }
     }

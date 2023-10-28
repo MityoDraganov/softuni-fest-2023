@@ -10,8 +10,10 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try{
+        if(credentials.password !== credentials.rePassword){
+            throw new Error("Passwords do not match")
+        }
         const response = await registerUser(credentials)
-
         setAccessData(response)
         localStorage.setItem('access_info', JSON.stringify(response));
         } catch(err){

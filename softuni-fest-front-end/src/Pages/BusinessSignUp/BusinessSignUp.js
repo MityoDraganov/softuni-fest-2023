@@ -12,17 +12,17 @@ const BusinessSignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try{
-
-    
-    const data = await registerBusiness(credentials)
-    setAccessData(data)
-    localStorage.setItem('access_info', JSON.stringify(data));
-
+    if(credentials.password !== credentials.rePassword){
+        throw new Error("Passwords do not match")
+    }
+    const response = await registerBusiness(credentials)
+    setAccessData(response)
+    localStorage.setItem('access_info', JSON.stringify(response));
     navigate("/business/products")
     } catch(err){
-      errorNotification(err.message)
+        errorNotification(err.message)
     }
-  }
+}
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
