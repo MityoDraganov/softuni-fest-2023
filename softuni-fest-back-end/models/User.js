@@ -19,7 +19,7 @@ const userSchema = new Schema({
             product: { type: Schema.Types.ObjectId, ref: 'Product' },
             paidWith: { type: String } 
         }
-    ],
+    ]
 });
 
 userSchema.index(
