@@ -29,11 +29,11 @@ export const Navigation = () => {
         accessData.isBusiness ? (
             <nav className={styles.container}>
                 <ul>
-                    <li className={isActive("/business/products")}>
-                        <Link to="/business/products">Products</Link>
-                    </li>
                     <li className={isActive("/")}>
                         <Link to="/">Home</Link>
+                    </li>
+                    <li className={isActive("/business/products")}>
+                        <Link to="/business/products">Products</Link>
                     </li>
                 </ul>
 
