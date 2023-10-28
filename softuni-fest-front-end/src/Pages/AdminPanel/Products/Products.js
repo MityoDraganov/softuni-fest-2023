@@ -56,7 +56,9 @@ export const Products = () => {
         e.preventDefault();
 
         try {
+            console.log('in');
             const editedProduct = await editProduct(productId, values);
+            console.log(editedProduct);
             setProducts((state) => {
                 const newState = [...state]
                 newState[edittingIndex] = editedProduct
@@ -66,6 +68,7 @@ export const Products = () => {
             setEditingIndex(null)
         } catch (err) {
             errorNotification(err.message)
+            console.log(err);
         }
     };
 

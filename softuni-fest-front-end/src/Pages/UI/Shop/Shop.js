@@ -25,9 +25,12 @@ export const Shop = () => {
     const [filteredProducts, setFilteredProducts] = useState([])
 
     const onChangeHandler = (e) => {
-        setSearchValue(e.target.value);
+        const inputValue = e.target.value.toLowerCase(); // Convert the input to lowercase
+        setSearchValue(inputValue);
+    
+        // Filter products based on the lowercase input value
         setFilteredProducts(products.filter((product) => {
-            return product.owner.companyName.toLowerCase().includes(searchValue.toLowerCase());
+            return product.owner.companyName.toLowerCase().includes(inputValue);
         }));
     };
 

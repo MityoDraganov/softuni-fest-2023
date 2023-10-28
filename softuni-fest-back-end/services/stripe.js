@@ -1,6 +1,7 @@
 require('dotenv').config();
 const success_url = "http://localhost:3000/payment/success"
-const cancel_url = (id) => "http://localhost:3000/users/shop/" + id
+// const cancel_url = (id) => "http://localhost:3000/users/shop/" + id
+const cancel_url ="http://localhost:3000/users/shop/"
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 async function createSession(product) {
