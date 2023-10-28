@@ -1,4 +1,4 @@
-export const ProductRow = ({ product, setEditingIndex }) => {
+export const ProductRow = ({ product, setEditingIndex, deleteHandler }) => {
 
 
     return(
@@ -9,7 +9,11 @@ export const ProductRow = ({ product, setEditingIndex }) => {
             <td>
                 <div>
                     <button onClick={setEditingIndex}>Edit</button>
-                    <button>Delete</button>
+                    <button 
+                        onClick={deleteHandler}
+                    >
+                        Delete
+                        </button>
                 </div>
             </td>
         </tr>

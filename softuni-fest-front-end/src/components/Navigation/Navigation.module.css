@@ -19,12 +19,9 @@ body {
     display: flex;
     flex-direction: row;
 
-    gap: 10%;
+    gap: 30%;
 }
 
-.nav-auth{
-    gap: 30% !important
-}
 
 
 
