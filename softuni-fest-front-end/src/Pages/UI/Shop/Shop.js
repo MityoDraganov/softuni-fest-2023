@@ -2,14 +2,15 @@
 import styles from "./Shop.module.css"
 
 import { Search } from "../../../components/Search/Search"
-import { getAllProducts } from "../../../services/requests"
+import { getAllProducts, getProductById } from "../../../services/requests"
 import { useEffect, useState } from "react"
 
 import { Product } from "../../../components/Product/Product"
 import { ShopModal } from "../../../components/ShopModal/ShopModal"
+import { useParams } from "react-router-dom"
 
 export const Shop = () => {
-
+    const { id } = useParams()
     const [selectedProduct, setSelectedProduct] = useState({
         name: "",
         price: 0,
@@ -22,7 +23,6 @@ export const Shop = () => {
 
     const onChangeHandler = (e) => {
         setSearchValue(e.target.value);
-        // set filtered products
         setFilteredProducts(products.filter((product) => {
             return product.owner.companyName.toLowerCase().includes(searchValue.toLowerCase());
         }));
@@ -34,9 +34,19 @@ export const Shop = () => {
         setProducts(data)
     }
 
+    const getProductByIdFunc = async (id) => {
+        if (id) {
+            const data = await getProductById(id)
+            console.log(data);
+            setSelectedProduct(data)
+            // to do remove the product id from the url
+        }
+    }
+
     useEffect(() => {
+        getProductByIdFunc(id)
         getProducts()
-    }, [])
+    }, [id])
 
     return (
         <div className={styles["container"]}>
@@ -58,7 +68,7 @@ export const Shop = () => {
                     ))}
                 </ul> */}
             </div>
-    
+
             <div className={styles["products-container"]}>
                 {searchValue !== "" ? (
                     filteredProducts.map((product) => (
@@ -78,7 +88,7 @@ export const Shop = () => {
                     ))
                 )}
             </div>
-    
+
             {selectedProduct.name !== "" && (
                 <ShopModal
                     product={selectedProduct}

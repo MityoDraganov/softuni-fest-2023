@@ -44,6 +44,8 @@ function App() {
           <Route path="/users/register" element={<PrivateRoute component={SignUp} />} />
           <Route path="/users/login" element={<PrivateRoute component={SignIn} />} />
           <Route path="/users/shop" element={<Shop />} />
+          <Route path="/users/shop/:id" element={<Shop />} />
+
           <Route path="/" element={<Home />} />
           <Route path="/business/register" element={<PrivateRoute component={BusinessSignUp} />} />
           <Route path="/business/products" element={<RouteGuard component={Products} />} />
