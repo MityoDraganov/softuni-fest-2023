@@ -16,7 +16,6 @@ label {
 }
 
 
-
 button {
     width: 100%;
     font-size: 16px;
@@ -87,4 +86,14 @@ h1 {
 /* Misc additional styles */
 .fullWidth {
     width: 460px;
+}
+
+.input {
+    width: 70%;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    margin-top: 5px;
+    padding: 5px 10px !important;
 }
