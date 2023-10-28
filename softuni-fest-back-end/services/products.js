@@ -8,6 +8,20 @@ async function getAll() {
             select: '-hashedPassword' // exclude hashedPassword
         }).lean();
 }
+async function getById(id) {
+    return await Product.findById(id)
+        .populate({
+            path: 'owner',
+            select: '-hashedPassword' // exclude hashedPassword
+        });;
+}
+
+async function getByOwner(owner) {
+    return Product.find({ owner }).populate({
+        path: 'owner',
+        select: '-hashedPassword' // exclude hashedPassword
+    }).lean();
+}
 
 async function create(name, description, price, owner, subscription) {
     let priceProd; // Define the price variable here
@@ -20,22 +34,6 @@ async function create(name, description, price, owner, subscription) {
     await result.save();
 
     return result;
-}
-
-async function getById(id) {
-    return await Product.findById(id)
-        .populate({
-            path: 'owner',
-            select: '-hashedPassword' // exclude hashedPassword
-        }).lean();;
-}
-
-async function getByIdForEdit(id) {
-    return await Product.findById(id)
-        .populate({
-            path: 'owner',
-            select: '-hashedPassword' // exclude hashedPassword
-        });
 }
 
 async function update(existing, item, subscription) {
@@ -58,14 +56,6 @@ async function update(existing, item, subscription) {
     return existing;
 }
 
-// getByOwner
-async function getByOwner(owner) {
-    return Product.find({ owner }).populate({
-        path: 'owner',
-        select: '-hashedPassword' // exclude hashedPassword
-    }).lean();
-}
-
 async function deleteById(product) {
     if(product.priceId){
         await deletePrice(product.priceId);
@@ -81,5 +71,4 @@ module.exports = {
     update,
     deleteById,
     getByOwner,
-    getByIdForEdit
 };

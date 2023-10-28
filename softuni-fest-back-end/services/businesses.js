@@ -51,9 +51,7 @@ function createBusinessSession(business) {
 }
 
 async function getAll() {
-
     return await Business.find({}).select('-hashedPassword -email -__v'); 
-
 }
 
 async function getBusinessById(id){

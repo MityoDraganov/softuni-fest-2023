@@ -33,6 +33,28 @@ router.post('/pay/:id', objectIdValidator(), async (req, res) => {
 }
 )
 
+router.post('/pay/coinbase/:id', objectIdValidator(), async (req, res) => {
+    try {
+        if (!req.user) {
+            throw new Error('You need to be logged in to make a payment');
+        }
+        const product = await getById(req.params.id);
+        if(!product){
+            throw new Error('Product not found');
+        }
+        if(product.priceId){
+            throw new Error('Coinbase does not support subscriptions');
+        }
+        const charge = await coinbase.createCharge(product, req.user._id);
+        res.json({ id: charge.id, url: charge.hosted_url });
+        addPurchaseHistory(productMetadata.customer_id, productMetadata.product_id, "coinbase")
+
+    } catch (e) {
+        console.log(e);
+        res.status(400).json({ message: 'Something went wrong ' + e.message });
+    }
+});
+
 router.post('/stripe-webhook', async (req, res) => {
     const payload = req.body;
     const sig = req.headers['stripe-signature'];
@@ -69,28 +91,6 @@ router.post('/coinbase-webhook', async (req, res) => {
     }
 
     res.sendStatus(200);
-});
-
-router.post('/pay/coinbase/:id', objectIdValidator(), async (req, res) => {
-    try {
-        if (!req.user) {
-            throw new Error('You need to be logged in to make a payment');
-        }
-        const product = await getById(req.params.id);
-        if(!product){
-            throw new Error('Product not found');
-        }
-        if(product.priceId){
-            throw new Error('Coinbase does not support subscriptions');
-        }
-        const charge = await coinbase.createCharge(product, req.user._id);
-        res.json({ id: charge.id, url: charge.hosted_url });
-        addPurchaseHistory(productMetadata.customer_id, productMetadata.product_id, "coinbase")
-
-    } catch (e) {
-        console.log(e);
-        res.status(400).json({ message: 'Something went wrong ' + e.message });
-    }
 });
 
 // router.post('/pay/opennode/:id', async (req, res) => {
