@@ -30,7 +30,7 @@ async function createSession(product, userId) {
 }
 
 async function createSubscriptionSession(product, userId) {
-    const priceId = product.subscriptionId;
+    const priceId = product.priceId;
     if (!priceId) throw new Error("No subscriptionId found");
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],

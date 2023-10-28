@@ -33,6 +33,7 @@ const Profile = () => {
                         <p>Price: ${purchase?.product.price}</p>
                         <p>Paid With: {purchase?.paidWith}</p>
                         <p>Purchase Date: {new Date(purchase?.purchaseDate).toLocaleString()}</p>
+                        {purchase?.product.priceId !== null && <p>Subscription</p>}
                     </li>
                 ))}
             </ul>
