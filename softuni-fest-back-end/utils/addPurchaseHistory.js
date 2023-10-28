@@ -23,6 +23,21 @@ async function addPurchaseHistory(customerId, productId) {
     }
 }
 
+async function getPurchaseHistory(customerId) {
+    try {
+        const user = await getUserById(customerId);
+        const business = await getBusinessById(customerId);
+        if(!user){
+            return business.purchases;
+        }else{
+            return user.purchases;
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 module.exports = {
     addPurchaseHistory,
+    getPurchaseHistory
 };

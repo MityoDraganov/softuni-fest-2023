@@ -6,6 +6,7 @@ const {
     login,
     logout,
 } = require('../services/users');
+const { getPurchaseHistory } = require('../utils/addPurchaseHistory');
 const mapErrors = require('../utils/mapper');
 
 
@@ -60,6 +61,19 @@ router.post('/login', isGuest(), async (req, res) => {
 router.get('/logout', (req, res) => {
     logout(req.user?.token);
     res.status(204).end();
+});
+
+router.get('/purchases/:id', async (req, res) => {
+    if(!req.user){
+        res.status(401).json({message: 'Unauthorized'})
+        return;
+    }
+    if(req.user._id != req.params.id){
+        res.status(401).json({message: 'Unauthorized'})
+        return;
+    }
+    const purchases = await getPurchaseHistory(req.params.id);
+    res.json(purchases);
 });
 
 module.exports = router;
