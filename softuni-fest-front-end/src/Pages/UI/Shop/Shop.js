@@ -46,7 +46,7 @@ export const Shop = () => {
 
 
     const filteredProducts = products.filter((product) => {
-        return product.name.toLowerCase().includes(searchValue.toLowerCase());
+        return product.owner.companyName.toLowerCase().includes(searchValue.toLowerCase());
     });
 
 
