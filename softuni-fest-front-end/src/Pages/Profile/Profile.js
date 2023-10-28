@@ -11,7 +11,7 @@ const Profile = () => {
                 const data = await getPurchaseHistory(accessData._id)
                 setPurchase(data)
             }catch(e){
-                
+
             }
         }
         getUserPurchaseHistory()
@@ -27,10 +27,11 @@ const Profile = () => {
 
             <ul className={styles.purchases}>
                 {purchases?.map(purchase => (
-                    <li key={purchase._id} className={styles.purchase}>
-                        <p>{purchase.name}</p>
-                        <p>{purchase.description}</p>
-                        <p>${purchase.price}</p>
+                    <li key={purchase?.product._id} className={styles.purchase}>
+                        <p>Name: {purchase?.product.name}</p>
+                        <p>Description: {purchase?.product.description}</p>
+                        <p>Price: ${purchase?.product.price}</p>
+                        <p>Paid With: {purchase?.paidWith}</p>
                     </li>
                 ))}
             </ul>
