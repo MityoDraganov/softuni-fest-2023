@@ -38,7 +38,10 @@ async function update(existing, item) {
 
 // getByOwner
 async function getByOwner(owner) {
-    return Product.find({ owner });
+    return Product.find({ owner }).populate({
+        path: 'owner',
+        select: '-hashedPassword' // exclude hashedPassword
+    }).lean();
 }
 
 async function deleteById(id) {
