@@ -19,6 +19,7 @@ import { ToastContainer } from 'react-toastify';
 import Home from './Pages/HomePage/HomePage';
 import { RouteGuard } from './util/RouteGuard';
 import 'react-toastify/dist/ReactToastify.css'
+import LearnMore from './Pages/LearnMore/LearnMore';
 function App() {
   return (
     <>
@@ -34,7 +35,7 @@ function App() {
           draggable
           pauseOnHover
           theme="dark"
-        /> 
+        />
 
         <Navigation />
         <Routes>
@@ -46,7 +47,8 @@ function App() {
 
           <Route path="/business/register" element={<BusinessSignUp />} />
 
-          <Route path="/business/products" element={<RouteGuard component={Products}/>} />
+          <Route path="/business/products" element={<RouteGuard component={Products} />} />
+          <Route path="/learn-more" element={<LearnMore />} />
         </Routes>
       </AuthProvider>
     </>
