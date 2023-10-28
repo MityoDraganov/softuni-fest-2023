@@ -3,7 +3,7 @@ import styles from './BusinessSignUp.module.css';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { registerBusiness } from '../../services/requests';
-import { errorNotification } from '../../util/notificationHandler';
+import { errorNotification, successNotification } from '../../util/notificationHandler';
 
 const BusinessSignUp = () => {
   const navigate = useNavigate()
@@ -11,18 +11,19 @@ const BusinessSignUp = () => {
   const { setAccessData } = useContext(AuthContext)
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try{
-    if(credentials.password !== credentials.rePassword){
+    try {
+      if (credentials.password !== credentials.rePassword) {
         throw new Error("Passwords do not match")
+      }
+      const response = await registerBusiness(credentials)
+      setAccessData(response)
+      successNotification("Registration Successful")
+      localStorage.setItem('access_info', JSON.stringify(response));
+      navigate("/business/products")
+    } catch (err) {
+      errorNotification(err.message)
     }
-    const response = await registerBusiness(credentials)
-    setAccessData(response)
-    localStorage.setItem('access_info', JSON.stringify(response));
-    navigate("/business/products")
-    } catch(err){
-        errorNotification(err.message)
-    }
-}
+  }
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
