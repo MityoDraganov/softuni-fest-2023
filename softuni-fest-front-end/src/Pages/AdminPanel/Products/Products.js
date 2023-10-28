@@ -19,7 +19,10 @@ export const Products = () => {
         name: "",
         description: "",
         price: 0,
+        isSubscription: false
     });
+
+
 
     const getProducts = useCallback(async () => {
         if (!accessData._id) {
@@ -38,10 +41,16 @@ export const Products = () => {
         setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
     };
 
+    const toggleHandler = () => {
+        setValues((state) => ({ ...state, isSubscription: !state.isSubscription }));
+    };
+    
+
     const createHandler = async (e) => {
         e.preventDefault();
-
+    
         try {
+            console.log(values.isSubscription);
             const parsedPrice = parseFloat(values.price);
             const data = await createProduct({ ...values, price: parsedPrice });
             setProducts((state) => [...state, data])
@@ -51,6 +60,7 @@ export const Products = () => {
             errorNotification(err.message)
         }
     };
+    
 
     const editHandler = async (e, productId) => {
         e.preventDefault();
@@ -110,7 +120,9 @@ export const Products = () => {
                                 name: "",
                                 description: "",
                                 price: 0,
+                                isSubscription: false
                             })
+
                         }
                         }>
                         Create item
@@ -148,12 +160,15 @@ export const Products = () => {
 
             {isOpen && (
                 <ProductModal
-                    CloseModal={() => setIsOpen(false)}
-                    mode="create"
-                    values={values}
-                    handleSubmit={createHandler}
-                    onChangeHandler={onChangeHandler}
-                />
+                CloseModal={() => setIsOpen(false)}
+                mode="create"
+                values={values}
+                handleSubmit={createHandler}
+                onChangeHandler={onChangeHandler}
+                toggleHandler={toggleHandler}
+                isSubscription={values.isSubscription}
+            />
+            
             )}
 
             {edittingIndex !== null &&
@@ -163,6 +178,8 @@ export const Products = () => {
                     values={values}
                     handleSubmit={(e) => editHandler(e, products[edittingIndex]._id)}
                     onChangeHandler={onChangeHandler}
+                    toggleHandler={toggleHandler}
+                    isSubscription={values.isSubscription}
                 />
             }
         </>

@@ -1,7 +1,7 @@
 
 import styles from "./ProductModal.module.css"
 
-export const ProductModal = ({ CloseModal, mode, onChangeHandler, values, handleSubmit }) => {
+export const ProductModal = ({ CloseModal, mode, onChangeHandler, values, handleSubmit, toggleHandler, isSubscription }) => {
 
     return (
 
@@ -35,6 +35,28 @@ export const ProductModal = ({ CloseModal, mode, onChangeHandler, values, handle
                         onChange={onChangeHandler}
                         value={values.price}
                     />
+
+                </div>
+
+                <div className={styles["subscription-container"]}>
+
+                    <div className={styles["toggler-wrapper"]}>
+                        <input
+                            type="checkbox"
+                            name="subscription"
+                            checked={isSubscription || false}
+                            readOnly
+                        />
+                        <div
+                        onClick={toggleHandler}
+                         className={styles["toggler-slider"]}
+                         >
+                            <div className={styles["toggler-knob"]}></div>
+                        </div>
+                    </div>
+
+
+                    <label name="subscription">Make the product a subscription</label>
 
                 </div>
 
