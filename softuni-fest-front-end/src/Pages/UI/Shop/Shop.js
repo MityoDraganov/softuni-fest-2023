@@ -32,6 +32,8 @@ export const Shop = () => {
         getProducts()
     }, [])
 
+
+
     const filteredProducts = products.filter((product) => {
         return product.name.toLowerCase().includes(searchValue.toLowerCase());
     });
@@ -51,14 +53,16 @@ export const Shop = () => {
 
                 <ul>
                     {searchValue && filteredProducts.map((product, index) => (
+                        searchValue !== product.name &&
                         <li
                             key={index}
-                            onClick={() => getBussiness(product.owner)}
+                            onClick={() => setSearchValue(product.name)}
                         >
                             {product.name}
                         </li>
                     ))}
                 </ul>
+
             </div>
 
             <div className={styles["products-container"]}>
