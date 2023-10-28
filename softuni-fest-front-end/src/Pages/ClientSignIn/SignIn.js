@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import styles from './SignIn.module.css';
 import { loginUser } from '../../services/requests';
 import { AuthContext } from '../../contexts/AuthContext';
-import { errorNotification } from '../../util/notificationHandler';
+import { errorNotification, successNotification } from '../../util/notificationHandler';
 
 const SignIn = () => {
     const [credentials, setCredentials] = useState({ firstName: "", lastName: "", email: "", password: "", rePassword: "" });
@@ -13,6 +13,7 @@ const SignIn = () => {
             if (credentials.email === "" || credentials.password === "") throw new Error("Please fill all fields")
             const response = await loginUser(credentials)
             setAccessData(response)
+            successNotification("Login Successful")
             localStorage.setItem('access_info', JSON.stringify(response));
         } catch (err) {
             errorNotification(err.message)

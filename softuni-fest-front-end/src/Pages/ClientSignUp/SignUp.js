@@ -3,7 +3,7 @@ import styles from './SignUp.module.css';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { registerUser } from '../../services/requests';
-import { errorNotification } from '../../util/notificationHandler';
+import { errorNotification, successNotification } from '../../util/notificationHandler';
 const SignUp = () => {
     const { setAccessData } = useContext(AuthContext)
     const [credentials, setCredentials] = useState({ firstName: "", lastName: "", email: "", password: "", rePassword: "" });
@@ -14,6 +14,7 @@ const SignUp = () => {
             throw new Error("Passwords do not match")
         }
         const response = await registerUser(credentials)
+        successNotification("Registration Successful")
         setAccessData(response)
         localStorage.setItem('access_info', JSON.stringify(response));
         } catch(err){
