@@ -47,7 +47,7 @@ async function update(existing, item, subscription) {
         if(existing.priceId){
             await deletePrice(existing.priceId);
         }
-        item.priceId = null;
+        existing.priceId = null;
     }
     existing.name = item.name;
     existing.description = item.description;
