@@ -67,8 +67,6 @@ router.put('/edit/:id', isBusiness(), objectIdValidator(), async (req, res) => {
     }
     try {
         const record = await getByIdForEdit(req.params.id);
-        console.log("record id");
-        console.log(req.params.id);
         if(!record){
             throw new Error('Product not found');
         }
@@ -92,7 +90,6 @@ router.put('/edit/:id', isBusiness(), objectIdValidator(), async (req, res) => {
 router.delete('/delete/:id', isBusiness(), objectIdValidator(), async (req, res) => {
     try {
         const record = await getById(req.params.id);
-        console.log(record);
         if (!record) {
             throw new Error('Product not found');
         }
@@ -100,7 +97,7 @@ router.delete('/delete/:id', isBusiness(), objectIdValidator(), async (req, res)
             res.status(403).json({ message: 'You are not allowed to delete this record' });
             return;
         }
-        await deleteById(req.params.id);
+        await deleteById(record);
         res.status(200).json({ message: "Deleted" });
     } catch (err) {
         const error = mapErrors(err);

@@ -19,7 +19,7 @@ export const Products = () => {
         name: "",
         description: "",
         price: 0,
-        isSubscription: false
+        subscription: false
     });
 
 
@@ -42,7 +42,7 @@ export const Products = () => {
     };
 
     const toggleHandler = () => {
-        setValues((state) => ({ ...state, isSubscription: !state.isSubscription }));
+        setValues((state) => ({ ...state, subscription: !state.subscription }));
     };
     
 
@@ -50,11 +50,10 @@ export const Products = () => {
         e.preventDefault();
     
         try {
-            console.log(values.isSubscription);
+            console.log(values.subscription);
             const parsedPrice = parseFloat(values.price);
             const data = await createProduct({ ...values, price: parsedPrice });
             setProducts((state) => [...state, data])
-            getProducts()
             setIsOpen(false)
         } catch (err) {
             errorNotification(err.message)
@@ -120,7 +119,7 @@ export const Products = () => {
                                 name: "",
                                 description: "",
                                 price: 0,
-                                isSubscription: false
+                                subscription: false
                             })
 
                         }
@@ -166,7 +165,7 @@ export const Products = () => {
                 handleSubmit={createHandler}
                 onChangeHandler={onChangeHandler}
                 toggleHandler={toggleHandler}
-                isSubscription={values.isSubscription}
+                isSubscription={values.subscription}
             />
             
             )}
@@ -179,7 +178,7 @@ export const Products = () => {
                     handleSubmit={(e) => editHandler(e, products[edittingIndex]._id)}
                     onChangeHandler={onChangeHandler}
                     toggleHandler={toggleHandler}
-                    isSubscription={values.isSubscription}
+                    isSubscription={values.subscription}
                 />
             }
         </>

@@ -37,7 +37,6 @@ router.post('/createPrice/:id', async (req, res) => {
     try {
         const product = await getById(req.params.id);
         const price = await createProduct(product.name, product.price)
-        console.log(price);
         res.json(price);
     } catch (e) {
         console.log(e);

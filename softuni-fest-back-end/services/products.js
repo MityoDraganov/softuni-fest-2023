@@ -12,7 +12,6 @@ async function getAll() {
 
 async function create(name, description, price, owner, subscription) {
     let priceProd; // Define the price variable here
-
     if (subscription) {
         priceProd = await createPrice(name, description, price); // Use the correct variable name
     }
@@ -41,9 +40,6 @@ async function getByIdForEdit(id) {
 }
 
 async function update(existing, item) {
-    console.log("existing");
-    console.log(existing);
-    console.log(typeof existing);
     existing.name = item.name;
     existing.description = item.description;
     existing.price = item.price;
@@ -62,9 +58,7 @@ async function getByOwner(owner) {
     }).lean();
 }
 
-async function deleteById(id) {
-    const product = await getById(id);
-    if(!product) throw new Error("No product found");
+async function deleteById(product) {
     if(product.priceId){
         await deletePrice(product.priceId);
     }

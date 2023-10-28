@@ -11,12 +11,10 @@ async function addPurchaseHistory(customerId, productId) {
         if(!user){
             business.purchases.push(productId);
             await business.save();
-            console.log(business.purchases);
             return business.purchases;
         }else{
             user.purchases.push(productId);
             await user.save();
-            console.log(user.purchases);
             return user.purchases;
         }
 

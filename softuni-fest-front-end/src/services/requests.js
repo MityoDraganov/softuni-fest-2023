@@ -41,9 +41,8 @@ export const logoutBusiness = async () => {
     return api.get(endpoints.logoutBusiness);
 }
 
-export const createProduct = async ({ name, description, price }) => {
-    
-    return api.post(endpoints.createProduct, { name, description, price });
+export const createProduct = async ({ name, description, price, subscription }) => {
+    return api.post(endpoints.createProduct, { name, description, price, subscription });
 }
 
 export const getAllProducts = async () => {
