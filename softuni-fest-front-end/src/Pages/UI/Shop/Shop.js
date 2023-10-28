@@ -6,9 +6,15 @@ import { getAllProducts, getProductsByBusinessId } from "../../../services/reque
 import { useEffect, useState } from "react"
 
 import { Product } from "../../../components/Product/Product"
-
+import {ShopModal} from "../../../components/ShopModal/ShopModal"
 
 export const Shop = () => {
+
+    const [selectedProduct, setSelectedProduct] = useState({
+        name: "",
+        price: 0,
+        description: ""
+    })
 
     const [searchValue, setSearchValue] = useState("")
     const [products, setProducts] = useState([])
@@ -26,7 +32,10 @@ export const Shop = () => {
     }
 
     const searchBussiness = async (bussinessId) => {
+        console.log("id")
+        console.log(bussinessId);
         const data = await getProductsByBusinessId(bussinessId)
+        console.log(data);
         setProductsByBussiness(data)
     }
 
@@ -51,7 +60,7 @@ export const Shop = () => {
                 <Search
                     onInputChange={onChangeHandler}
                     searchValue={searchValue}
-                    searchBussiness={searchBussiness}
+                    searchBussiness={() => searchBussiness(filteredProducts[0].owner._id)}
                 />
 
                 <ul>
@@ -73,9 +82,17 @@ export const Shop = () => {
                     <Product
                         key={product._id}
                         product={product}
+                        openModal={() => setSelectedProduct(product)}
                     />
                 ))}
             </div>
+
+            {selectedProduct.name !== "" && (
+                <ShopModal 
+                    product={selectedProduct}
+                />
+            )
+            }
 
         </div>
     )
