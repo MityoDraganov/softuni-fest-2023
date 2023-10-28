@@ -54,7 +54,7 @@ export const Navigation = () => {
                     <li className={isActive("/")}>
                         <Link to="/">Home</Link>
                     </li>
-                    <li className={isActive("/shop")}>
+                    <li className={isActive("/users/shop")}>
                         <Link to="/users/shop">Shop</Link>
                     </li>
                     {/* <li className={isActive("/users/products")}>
