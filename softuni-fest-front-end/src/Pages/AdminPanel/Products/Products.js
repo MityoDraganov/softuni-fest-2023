@@ -1,9 +1,7 @@
 import styles from "./Products.module.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import { ProductModal } from "../../../components/ProductModal/ProductModal";
 import { createProduct, deleteProduct, editProduct, getProductsByBusinessId } from "../../../services/requests";
-
-// import { ProductRow } from "../../../components/productRow/ProductRow";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { errorNotification } from "../../../util/notificationHandler";
 import { ProductRow } from "../../../components/ProductRow/ProductRow";
@@ -23,18 +21,18 @@ export const Products = () => {
         price: 0,
     });
 
-    const getProducts = async () => {
+    const getProducts = useCallback(async () => {
         if (!accessData._id) {
             return
         }
         const data = await getProductsByBusinessId(accessData._id)
         console.log(data);
         setProducts(data)
-    }
+    }, [accessData])
 
     useEffect(() => {
         getProducts()
-    }, [accessData])
+    }, [getProducts])
 
     const onChangeHandler = (e) => {
         setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
@@ -67,7 +65,6 @@ export const Products = () => {
             setEditingIndex(null)
         } catch (err) {
             errorNotification(err.message)
-
         }
     };
 
