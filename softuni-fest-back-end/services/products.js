@@ -42,7 +42,7 @@ async function getByIdForEdit(id) {
 async function update(existing, item, subscription) {
     if (subscription) {
         const priceProd = await createPrice(item.name, item.description, item.price);
-        item.priceId = priceProd.id;
+        existing.priceId = priceProd.id;
     }else{
         if(existing.priceId){
             await deletePrice(existing.priceId);
