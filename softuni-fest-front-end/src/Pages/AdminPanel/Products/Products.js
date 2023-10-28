@@ -56,8 +56,8 @@ export const Products = () => {
         e.preventDefault();
 
         try {
-            console.log('in');
-            const editedProduct = await editProduct(productId, values);
+            const parsedPrice = parseFloat(values.price);
+            const editedProduct = await editProduct(productId, {...values, price: parsedPrice});
             console.log(editedProduct);
             setProducts((state) => {
                 const newState = [...state]

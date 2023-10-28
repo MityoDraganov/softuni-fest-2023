@@ -27,8 +27,10 @@ const request = async (method, url, data) => {
     }
 
     try {
-    
+        console.log("here");
         const res = await fetch(host + url, options);
+        console.log("down here");
+        console.log(res);
         const data = await res.json();
         if (!res.ok) {
             throw new Error(data.message);
@@ -38,6 +40,8 @@ const request = async (method, url, data) => {
         }
         return data;
     } catch (error) {
+        console.log("errored here? <- api ->");
+        console.log(error.message);
         throw new Error(error.message);
     }
 };

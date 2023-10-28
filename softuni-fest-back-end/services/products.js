@@ -18,20 +18,32 @@ async function create(name, description, price, owner) {
     return result;
 }
 
-function getById(id) {
-    return Product.findById(id)
+async function getById(id) {
+    return await Product.findById(id)
         .populate({
             path: 'owner',
             select: '-hashedPassword' // exclude hashedPassword
         }).lean();;
 }
 
+async function getByIdForEdit(id) {
+    return await Product.findById(id)
+        .populate({
+            path: 'owner',
+            select: '-hashedPassword' // exclude hashedPassword
+        });
+}
+
 async function update(existing, item) {
+    console.log("existing");
+    console.log(existing);
+    console.log(typeof existing);
     existing.name = item.name;
     existing.description = item.description;
     existing.price = item.price;
 
     await existing.save();
+    
 
     return existing;
 }
@@ -55,5 +67,6 @@ module.exports = {
     getById,
     update,
     deleteById,
-    getByOwner
+    getByOwner,
+    getByIdForEdit
 };
