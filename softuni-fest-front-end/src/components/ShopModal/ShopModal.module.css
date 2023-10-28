@@ -1,7 +1,7 @@
 .container {
     border-radius: 5%;
     box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0;
-    width: 40%;
+    width: 20%;
     margin: 0 auto;
     position: fixed;
     top: 50%;
@@ -12,9 +12,11 @@
     padding: 20px;
     z-index: 1000; /* Adjust z-index as needed */
     
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+
+}
+
+.container h2 {
+    margin-bottom: 0;
 }
 
 
@@ -67,6 +69,12 @@
     outline: none;
     margin-top: 5px;
     padding: 1% 0 1% 2% !important
+}
+
+.modal-close-container {
+    position: absolute;
+    top: 5%;
+    right: 5%;
 }
 
 

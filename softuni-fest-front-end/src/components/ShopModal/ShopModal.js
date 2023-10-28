@@ -4,7 +4,14 @@ import styles from "./ShopModal.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
+//contexts
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+
 export const ShopModal = ({ product, closeModal }) => {
+
+    const {accessData} = useContext(AuthContext)
+
 
     const handleStripePayment = async () => {
         const response = await stripeCheckout(product._id)
@@ -21,12 +28,18 @@ export const ShopModal = ({ product, closeModal }) => {
     return (
         <div className={styles["container"]}>
 
+            <div className={styles["modal-close-container"]}>
 
+                <button onClick={closeModal}>
+                    <FontAwesomeIcon icon={faTimes} />
+                </button>
+
+            </div>
 
             <div>
                 <h2>{product.name}</h2>
 
-                <p>{product.owner.companyName}</p>
+                <p className={styles["companyName"]}>{product.owner.companyName}</p>
 
                 <label>Item description:</label>
                 <p>{product.description}</p>
@@ -36,20 +49,18 @@ export const ShopModal = ({ product, closeModal }) => {
                 <label>Price:</label>
                 <p>${product.price.toFixed(2)}</p>
 
+                {!accessData ? 
                 <div className={styles["modal-actions"]}>
                     <button onClick={handleCoinbasePayment}>Pay with crypto</button>
                     <button onClick={handleStripePayment}>Pay with Stripe</button>
                 </div>
-
+                :
+                <div className={styles["modal-actions"]}>
+                </div>
+                }
             </div>
 
-            <div className={styles["modal-close-container"]}>
 
-                <button onClick={closeModal}>
-                    <FontAwesomeIcon icon={faTimes} />
-                </button>
-
-            </div>
         </div>
     )
 }
