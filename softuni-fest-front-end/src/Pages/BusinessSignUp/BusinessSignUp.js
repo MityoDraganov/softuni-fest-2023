@@ -3,6 +3,7 @@ import styles from './BusinessSignUp.module.css';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { registerBusiness } from '../../services/requests';
+import { errorNotification } from '../../util/notificationHandler';
 
 const BusinessSignUp = () => {
   const navigate = useNavigate()
@@ -10,11 +11,17 @@ const BusinessSignUp = () => {
   const { setAccessData } = useContext(AuthContext)
   const handleSubmit = async (e) => {
     e.preventDefault()
+    try{
+
+    
     const data = await registerBusiness(credentials)
     setAccessData(data)
     localStorage.setItem('access_info', JSON.stringify(data));
 
     navigate("/business/products")
+    } catch(err){
+      errorNotification(err.message)
+    }
   }
   return (
     <div className={styles.container}>
