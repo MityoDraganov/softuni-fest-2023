@@ -14,7 +14,8 @@ const endpoints = {
     getProductsById: (id) => `/products/${id}`,
     getProductsByBusinessId: (id) => `/products/getByOwner/${id}`,
     stripeCheckout: (id) => `/invoice/pay/${id}`,
-    coinbaseCheckout: (id) => `/invoice/pay/coinbase/${id}`
+    coinbaseCheckout: (id) => `/invoice/pay/coinbase/${id}`,
+    getPurchaseHistory: (userId) => `/users/purchases/${userId}`
 };
 
 export const registerUser = async ({ firstName, lastName, email, password, rePassword }) => {
@@ -71,4 +72,8 @@ export const stripeCheckout = async (id) => {
 
 export const coinbaseCheckout = async (id) => {
     return api.post(endpoints.coinbaseCheckout(id));
+}
+
+export const getPurchaseHistory = async (userId) => {
+    return api.get(endpoints.getPurchaseHistory(userId));
 }
