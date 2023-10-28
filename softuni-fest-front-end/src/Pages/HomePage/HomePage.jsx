@@ -10,7 +10,7 @@ export default function Home() {
             <header className={styles.header}>
                 <h1>Payment Service</h1>
             </header>
-
+            
             <section className={styles.section}>
                 <h2>Welcome to SoftUni Software Fest 2023!</h2>
                 <p>Discover the easiest way to manage your payments.</p>
