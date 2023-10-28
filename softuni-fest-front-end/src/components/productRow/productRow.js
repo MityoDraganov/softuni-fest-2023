@@ -1,13 +1,15 @@
+import styles from "./ProductRow.module.css"
+
 export const ProductRow = ({ product, setEditingIndex, deleteHandler }) => {
 
 
     return(
-        <tr className="product-row">
+        <tr className={styles["product-row"]}>
             <td>{product.name}</td>
             <td>{product.description}</td>
             <td>{product.price.toFixed(2)}</td>
             <td>
-                <div>
+                <div className={styles["actions-container"]}>
                     <button onClick={setEditingIndex}>Edit</button>
                     <button 
                         onClick={deleteHandler}
