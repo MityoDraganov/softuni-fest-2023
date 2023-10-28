@@ -1,4 +1,3 @@
-
 function isBusiness() {
     return (req, res, next) => {
         if (req.user && req.business) {

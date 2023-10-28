@@ -11,7 +11,6 @@ const mapErrors = require('../utils/mapper');
 
 
 router.post('/register', isGuest(), async (req, res) => {
-
     try {
         if (
             req.body.password.trim() == '' ||
@@ -27,7 +26,6 @@ router.post('/register', isGuest(), async (req, res) => {
         if (existing) {
             throw new Error('Email is already registered as a business');
         }
-
         const result = await register(
             req.body.email.trim().toLowerCase(),
             req.body.firstName.trim(),

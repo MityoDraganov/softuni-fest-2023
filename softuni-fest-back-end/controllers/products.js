@@ -3,7 +3,6 @@ const { getAll, create, getById, deleteById, update, getByOwner } = require('../
 const mapErrors = require('../utils/mapper');
 const { isBusiness } = require('../middlewares/guards');
 const objectIdValidator = require('../middlewares/objectIdValidator');
-// const { ObjectId } = require('mongoose').Types;
 
 router.get('/', async (req, res) => {
     const data = await getAll();
