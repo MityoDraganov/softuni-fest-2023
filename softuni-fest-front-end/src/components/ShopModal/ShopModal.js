@@ -8,10 +8,12 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
+
+import { Link } from "react-router-dom";
+
 export const ShopModal = ({ product, closeModal }) => {
 
-    const {accessData} = useContext(AuthContext)
-
+    const { accessData } = useContext(AuthContext)
 
     const handleStripePayment = async () => {
         const response = await stripeCheckout(product._id)
@@ -49,14 +51,25 @@ export const ShopModal = ({ product, closeModal }) => {
                 <label>Price:</label>
                 <p>${product.price.toFixed(2)}</p>
 
-                {!accessData ? 
-                <div className={styles["modal-actions"]}>
-                    <button onClick={handleCoinbasePayment}>Pay with crypto</button>
-                    <button onClick={handleStripePayment}>Pay with Stripe</button>
-                </div>
-                :
-                <div className={styles["modal-actions"]}>
-                </div>
+                {accessData.accessToken ?
+                    (
+                        <div className={styles["modal-actions"]}>
+                            <button onClick={handleCoinbasePayment}>Pay with crypto</button>
+                            <button onClick={handleStripePayment}>Pay with Stripe</button>
+                        </div>
+                    )
+                    :
+                    (
+                        <div className={styles["modal-info"]}>
+                            <p>Only logged in users can make purchases!</p>
+
+                            <p className={styles["modal-nav"]}>
+                                <Link to={"/users/login"}>
+                                    Click here to log in
+                                </Link>
+                            </p>
+                        </div>
+                    )
                 }
             </div>
 

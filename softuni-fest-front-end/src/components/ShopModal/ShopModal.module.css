@@ -97,3 +97,13 @@
 .modal-close-container button:hover {
     background-color: #d81f35;
 }
+
+.modal-info p{
+    margin-bottom: 0;
+    margin-top: 0.1%;
+}
+
+.modal-nav a{
+    text-decoration: none;
+    color: blue;
+}
