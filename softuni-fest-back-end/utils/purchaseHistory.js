@@ -29,8 +29,10 @@ async function getPurchaseHistory(customerId) {
         const user = await getUserById(customerId);
         const business = await getBusinessById(customerId);
         if(!user){
+            console.log(business.purchases);
             return business.purchases;
         }else{
+            console.log(user.purchases);
             return user.purchases;
         }
     } catch (err) {

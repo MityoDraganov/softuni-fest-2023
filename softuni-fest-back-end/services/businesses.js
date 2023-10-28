@@ -57,7 +57,7 @@ async function getAll() {
 }
 
 async function getBusinessById(id){
-    return await Business.findById(id).select('-hashedPassword').populate('purchases');
+    return await Business.findById(id).select('-hashedPassword').populate('purchases.product');
 }
 
 

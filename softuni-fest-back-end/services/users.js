@@ -100,7 +100,7 @@ function getAll() {
 }
 
 async function getUserById(id){
-    return await User.findById(id).select('-hashedPassword').populate('purchases');
+    return await User.findById(id).select('-hashedPassword').populate('purchases.product');
 }
 
 
