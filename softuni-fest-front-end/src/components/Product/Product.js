@@ -7,9 +7,8 @@ export const Product = ({product, openModal}) => {
     return(
         <div className={styles["container"]}>
             <h1>{product.name}</h1>
-            <h2>{product.owner.companyName}</h2>
-            <p>{product.description}</p>
-            <p>{product.price}</p>
+            <p className={styles["companyName"]}>{product.owner.companyName}</p>
+            <p>${product.price.toFixed(2)}</p>
             <div className={styles["actions-container"]}>
                <button onClick={openModal}>Buy</button>  {/* <-  Example Change Later */}
             </div>

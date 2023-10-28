@@ -53,7 +53,7 @@ function App() {
           <Route path="/learn-more" element={<LearnMore />} />
 
 
-          <Route path="/payment-successful" element={<PaymentRoute component={PaymentSuccessful} />} />
+          <Route path="/payment/success" element={<PaymentRoute component={PaymentSuccessful} />} />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </AuthProvider>

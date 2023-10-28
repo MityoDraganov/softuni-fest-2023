@@ -1,12 +1,3 @@
-.search-container ul{
-    list-style-type: none;
-}
-
-.search-container {
-    width: 70%;
-    margin: 0 auto;
-}
-
 .blur-background::before {
     content: "";
     position: absolute;
@@ -16,4 +7,18 @@
     height: 100%;
     background-color: rgba(255, 255, 255, 0.5); /* Adjust the background color and opacity */
     backdrop-filter: blur(5px); /* Adjust the blur value as needed */
+}
+.search-container ul{
+    list-style-type: none;
+}
+
+.search-container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.products-container {
+    display: flex;
+    margin: 2% 5%;
+    gap: 10%;
 }

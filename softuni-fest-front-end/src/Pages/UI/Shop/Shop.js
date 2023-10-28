@@ -14,7 +14,10 @@ export const Shop = () => {
     const [selectedProduct, setSelectedProduct] = useState({
         name: "",
         price: 0,
-        description: ""
+        description: "",
+        owner: {
+            companyName: ""
+        }
     })
 
     const [searchValue, setSearchValue] = useState("")
@@ -59,12 +62,12 @@ export const Shop = () => {
                 />
                 {/* <ul>
                     {searchValue && filteredProducts.map((product, index) => (
-                        searchValue !== product.name &&
+                        product.owner && searchValue !== product.owner.companyName &&
                         <li
                             key={index}
-                            onClick={() => setSearchValue(product.name)}
+                            onClick={() => setSearchValue(product.owner.companyName)}
                         >
-                            {product.name}
+                            {product.owner.companyName}
                         </li>
                     ))}
                 </ul> */}
@@ -85,7 +88,7 @@ export const Shop = () => {
                             key={product._id}
                             product={product}
                             openModal={() => setSelectedProduct(product)}
-                           
+
                         />
                     ))
                 )}
