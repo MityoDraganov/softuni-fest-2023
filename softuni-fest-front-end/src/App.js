@@ -47,6 +47,10 @@ function App() {
           <Route path="/users/shop" element={<Shop />} />
           <Route path="/users/shop/:id" element={<Shop />} />
 
+
+          {/* DAFI SMENI TOVA !!! */}
+          <Route path="/profile" element={<Shop />} />
+
           <Route path="/" element={<Home />} />
           <Route path="/business/register" element={<PrivateRoute component={BusinessSignUp} />} />
           <Route path="/business/products" element={<RouteGuard component={Products} />} />

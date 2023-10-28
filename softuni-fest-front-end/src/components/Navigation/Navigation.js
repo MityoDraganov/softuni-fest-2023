@@ -41,6 +41,9 @@ export const Navigation = () => {
 
                 <ul className={styles["nav-auth"]}>
 
+                    <li className={isActive("/profile")}>
+                        <Link to={"/profile"}>Profile</Link>
+                    </li>
                     <li>
                         <Link onClick={handleLogout}>Logout</Link>
                     </li>
@@ -84,6 +87,11 @@ export const Navigation = () => {
 
                     :
                     <ul className={styles["nav-auth"]}>
+
+                        <li className={isActive("/profile")}>
+                            <Link to={"/profile"}>Profile</Link>
+                        </li>
+
                         <li>
                             <Link onClick={handleLogout}>Logout</Link>
                         </li>
