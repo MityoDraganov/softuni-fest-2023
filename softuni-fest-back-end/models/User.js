@@ -17,7 +17,7 @@ const userSchema = new Schema({
     purchases: [
         {
             product: { type: Schema.Types.ObjectId, ref: 'Product' },
-            paidWith: { type: String, required: true } // You can customize this field
+            paidWith: { type: String } 
         }
     ],
 });
