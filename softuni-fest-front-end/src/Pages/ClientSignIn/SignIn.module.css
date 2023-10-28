@@ -9,12 +9,12 @@
     margin-top: 10px;
 }
 
-label {
+.container label {
     display: block;
     margin-bottom: 5px;
 }
 
-button {
+.container button {
     display: block;
     width: 100%;
     font-size: 16px;
@@ -32,11 +32,11 @@ button {
     width: 460px;
 }
 
-button:hover {
+.container button:hover {
     background: rgb(0, 0, 167);
 }
 
-h1 {
+.container h1 {
     margin: 30px 0px 30px 0px;
 }
 
