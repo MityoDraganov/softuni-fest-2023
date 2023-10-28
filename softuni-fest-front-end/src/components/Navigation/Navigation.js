@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 
 import styles from "./Navigation.module.css";
+import { successNotification } from "../../util/notificationHandler";
 
 export const Navigation = () => {
     const navigate = useNavigate()
@@ -13,6 +14,7 @@ export const Navigation = () => {
         e.preventDefault()
         setAccessData({ isBusiness: false })
         localStorage.removeItem('access_info')
+        successNotification("Logged out successfully")
         navigate("/")
     }
 
@@ -85,7 +87,7 @@ export const Navigation = () => {
                     :
                     <ul className={styles["nav-auth"]}>
                         <li>
-                            <a onClick={handleLogout} >Logout</a>
+                            <Link onClick={handleLogout}>Logout</Link>
                         </li>
                     </ul>
                 }

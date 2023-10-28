@@ -8,7 +8,8 @@ const PrivateRoute = ({ path, component: Component, ...props }) => {
     if (!accessData.email) {
         return <Component />;
     }
-    errorNotification("Can't access register/login page if registered")
+    errorNotification("Can't access this page if you are already logged in!")
+    console.log('here');
     return <Navigate to={`/`} />;
 };
 

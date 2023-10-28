@@ -9,8 +9,12 @@ const router = require('express').Router();
 
 router.post('/pay/:id', objectIdValidator(), async (req, res) => {
     try {
+        if (!req.user) {
+            throw new Error('You need to be logged in to make a payment');
+        }
         const product = await getById(req.params.id);
         const session = await createSession(product);
+        //
         res.json({ id: session.id, url: session.url });
 
     } catch (e) {
@@ -22,6 +26,9 @@ router.post('/pay/:id', objectIdValidator(), async (req, res) => {
 
 router.post('/pay/coinbase/:id', objectIdValidator(), async (req, res) => {
     try {
+        if (!req.user) {
+            throw new Error('You need to be logged in to make a payment');
+        }
         const product = await getById(req.params.id);
         const charge = await coinbase.createCharge(product);
         res.json({ id: charge.id, url: charge.hosted_url });
@@ -33,7 +40,10 @@ router.post('/pay/coinbase/:id', objectIdValidator(), async (req, res) => {
 });
 
 // router.post('/pay/opennode/:id', async (req, res) => {
-//     try {
+//     try {        
+// if(!req.user){
+// throw new Error('You need to be logged in to make a payment');
+// }
 //         const product = await getById(req.params.id);
 //         const charge = await opennode.createCharge(product);
 //         res.json({url: charge});
