@@ -60,7 +60,7 @@ router.get('/getByOwner/:id', objectIdValidator(), async (req, res) => {
 
 router.put('/edit/:id', isBusiness(), objectIdValidator(), async (req, res) => {
 
-    const { name, description, price } = req.body;
+    const { name, description, price, subscription } = req.body;
     if (!name || !description || !price || !req.user || typeof price !== 'number') {
         res.status(400).json({ message: 'All fields are required and price must be a number' });
         return;
@@ -75,7 +75,7 @@ router.put('/edit/:id', isBusiness(), objectIdValidator(), async (req, res) => {
             return;
         }
         try {
-            const result = await update(record, { name, description, price });
+            const result = await update(record, { name, description, price }, subscription);
             res.status(201).json(result);
         } catch (err) {
             const error = mapErrors(err);
