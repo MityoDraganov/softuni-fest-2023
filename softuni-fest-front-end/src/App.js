@@ -23,6 +23,7 @@ import LearnMore from './Pages/LearnMore/LearnMore';
 import PrivateRoute from './util/RoutePrivate';
 import PaymentSuccessful from './Pages/PaymentSuccessful/PaymentSuccessful';
 import { PaymentRoute } from './util/PaymentRoute';
+import Profile from './Pages/Profile/Profile';
 function App() {
   return (
     <>
@@ -49,7 +50,7 @@ function App() {
 
 
           {/* DAFI SMENI TOVA !!! */}
-          <Route path="/profile" element={<Shop />} />
+          <Route path="/profile" element={<RouteGuard component={Profile} />} />
 
           <Route path="/" element={<Home />} />
           <Route path="/business/register" element={<PrivateRoute component={BusinessSignUp} />} />

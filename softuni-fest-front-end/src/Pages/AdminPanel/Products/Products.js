@@ -72,10 +72,16 @@ export const Products = () => {
 
     const editHandler = async (e, productId) => {
         e.preventDefault();
-
+    
         try {
             const parsedPrice = parseFloat(values.price);
             const editedProduct = await editProduct(productId, {...values, price: parsedPrice});
+            console.log(editedProduct);
+    
+            if ('priceId' in editedProduct && editedProduct.priceId !== null) {
+                editedProduct.subscription = true;
+            }
+    
             setProducts((state) => {
                 const newState = [...state]
                 if(!editedProduct.priceId){
