@@ -6,7 +6,7 @@ import { getAllProducts, getProductsByBusinessId } from "../../../services/reque
 import { useEffect, useState } from "react"
 
 import { Product } from "../../../components/Product/Product"
-import {ShopModal} from "../../../components/ShopModal/ShopModal"
+import { ShopModal } from "../../../components/ShopModal/ShopModal"
 
 export const Shop = () => {
 
@@ -53,16 +53,13 @@ export const Shop = () => {
 
     return (
         <div className={styles["container"]}>
-
             <div className={styles["search-container"]}>
                 <h2>Search</h2>
-
                 <Search
                     onInputChange={onChangeHandler}
                     searchValue={searchValue}
-                    searchBussiness={() => searchBussiness(filteredProducts[0].owner._id)}
+                    searchBussiness={() => searchBussiness(filteredProducts[0]?.owner?._id)}
                 />
-
                 <ul>
                     {searchValue && filteredProducts.map((product, index) => (
                         searchValue !== product.name &&
@@ -74,11 +71,10 @@ export const Shop = () => {
                         </li>
                     ))}
                 </ul>
-
             </div>
-
+    
             <div className={styles["products-container"]}>
-                {productsByBussiness.map((product) => (
+                {products.map((product) => (
                     <Product
                         key={product._id}
                         product={product}
@@ -86,14 +82,12 @@ export const Shop = () => {
                     />
                 ))}
             </div>
-
+    
             {selectedProduct.name !== "" && (
-                <ShopModal 
+                <ShopModal
                     product={selectedProduct}
                 />
-            )
-            }
-
+            )}
         </div>
     )
 }
