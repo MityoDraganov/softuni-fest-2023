@@ -20,10 +20,10 @@ router.post('/register', isGuest(), async (req, res) => {
             throw new Error('All fields are required');
         }
         const existing = await User.findOne({
-            email: new RegExp(`^${email}$`, 'i'),
+            email: new RegExp(`^${req.body.email}$`, 'i'),
         })
         if (existing) {
-            throw new Error('Email is already registered as a business');
+            throw new Error('Email is already registered as a client');
         }
 
         const result = await register(
