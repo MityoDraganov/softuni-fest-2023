@@ -20,6 +20,7 @@ import Home from './Pages/HomePage/HomePage';
 import { RouteGuard } from './util/RouteGuard';
 import 'react-toastify/dist/ReactToastify.css'
 import LearnMore from './Pages/LearnMore/LearnMore';
+import PrivateRoute from './util/RoutePrivate';
 function App() {
   return (
     <>
@@ -39,15 +40,13 @@ function App() {
 
         <Navigation />
         <Routes>
-          <Route path="/users/register" element={<SignUp />} />
-          <Route path="/users/login" element={<SignIn />} />
+          <Route path="/users/register" element={<PrivateRoute component={SignUp} />} />
+          <Route path="/users/login" element={<PrivateRoute component={SignIn} />} />
           <Route path="/users/shop" element={<Shop />} />
           <Route path="/users/shop/:id" element={<Shop />} />
 
           <Route path="/" element={<Home />} />
-
-          <Route path="/business/register" element={<BusinessSignUp />} />
-
+          <Route path="/business/register" element={<PrivateRoute component={BusinessSignUp} />} />
           <Route path="/business/products" element={<RouteGuard component={Products} />} />
           <Route path="/learn-more" element={<LearnMore />} />
         </Routes>
