@@ -42,7 +42,8 @@ export const Products = () => {
         e.preventDefault();
 
         try {
-            const data = await createProduct(values);
+            const parsedPrice = parseFloat(values.price);
+            const data = await createProduct({ ...values, price: parsedPrice });
             setProducts((state) => [...state, data])
             getProducts()
             setIsOpen(false)
