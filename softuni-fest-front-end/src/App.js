@@ -18,7 +18,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import Home from './Pages/HomePage/HomePage';
 import { RouteGuard } from './util/RouteGuard';
-
+import 'react-toastify/dist/ReactToastify.css'
 function App() {
   return (
     <>
@@ -34,7 +34,8 @@ function App() {
           draggable
           pauseOnHover
           theme="dark"
-        />
+        /> 
+
         <Navigation />
         <Routes>
           <Route path="/users/register" element={<SignUp />} />
