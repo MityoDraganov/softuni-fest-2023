@@ -1,6 +1,8 @@
 .container {
     max-width: 800px;
     margin: 40px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px #ddd;
 }
 
 .header {
@@ -8,16 +10,21 @@
     margin-bottom: 40px;
 }
 
+.brand {
+    color: #3282d5;
+}
+
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 20px;
+    gap: 20px;
 }
 
 .item {
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    box-shadow: 0 0 10px #ddd;
     text-align: center;
 }
 

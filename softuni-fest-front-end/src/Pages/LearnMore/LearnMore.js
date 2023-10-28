@@ -3,8 +3,11 @@ import styles from './LearnMore.module.css';
 export default function LearnMore() {
     return (
         <div className={styles.container}>
+
             <div className={styles.header}>
-                <h1>Learn More About Our Payment Service</h1>
+                <h1>
+                    Learn More About Our <span className={styles.brand}>Payment Service</span>
+                </h1>
                 <p>Our secure platform makes accepting payments easy.</p>
             </div>
 
@@ -29,6 +32,7 @@ export default function LearnMore() {
                 Get in touch to learn more about using our payment platform. Our team is ready to help you
                 accept payments and grow your business.
             </p>
+
         </div>
     );
 }
