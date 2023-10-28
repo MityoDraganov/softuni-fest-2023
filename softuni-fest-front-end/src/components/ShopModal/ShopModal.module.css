@@ -1,4 +1,4 @@
-.add-product-modal {
+.container {
     border-radius: 5%;
     box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0;
     width: 40%;
@@ -34,4 +34,12 @@
     background-color: #ef233c;
 }
 
-
+.container input {
+    display: block;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    margin-top: 5px;
+    padding: 1% 0 1% 2% !important
+}

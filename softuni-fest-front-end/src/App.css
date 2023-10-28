@@ -1,1 +1,10 @@
 
+input {
+    display: block;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    margin-top: 5px;
+    padding: 1% 0 1% 2% !important
+}
