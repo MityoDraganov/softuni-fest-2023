@@ -58,8 +58,8 @@ export const getProductsByBusinessId = async (id) => {
     return api.get(endpoints.getProductsByBusinessId(id));
 }
 
-export const editProduct = async (id, { name, description, price }) => {
-    return api.put(endpoints.editProduct(id), { name, description, price });
+export const editProduct = async (id, { name, description, price, subscription }) => {
+    return api.put(endpoints.editProduct(id), { name, description, price, subscription });
 }
 
 export const deleteProduct = async (id) => {
