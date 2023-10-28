@@ -55,25 +55,14 @@ export const Shop = () => {
     }, [id])
 
     return (
-        <div className={`${styles["container"]} ${selectedProduct.name !== "" ? styles["blur-background"] : ""}`}
-        >
+        <div className={`${styles["container"]} ${selectedProduct.name !== "" ? styles["blur-background"] : ""}`}>
             <div className={styles["search-container"]}>
                 <h2>Search</h2>
                 <Search
                     onInputChange={onChangeHandler}
                     searchValue={searchValue}
                 />
-                {/* <ul>
-                    {searchValue && filteredProducts.map((product, index) => (
-                        product.owner && searchValue !== product.owner.companyName &&
-                        <li
-                            key={index}
-                            onClick={() => setSearchValue(product.owner.companyName)}
-                        >
-                            {product.owner.companyName}
-                        </li>
-                    ))}
-                </ul> */}
+
             </div>
 
             <div className={styles["products-container"]}>
@@ -83,6 +72,7 @@ export const Shop = () => {
                             key={product._id}
                             product={product}
                             openModal={() => setSelectedProduct(product)}
+                            selectedProduct={selectedProduct}
                         />
                     ))
                 ) : (
@@ -91,7 +81,7 @@ export const Shop = () => {
                             key={product._id}
                             product={product}
                             openModal={() => setSelectedProduct(product)}
-
+                            selectedProduct={selectedProduct}
                         />
                     ))
                 )}
@@ -105,6 +95,7 @@ export const Shop = () => {
                         "price": 0,
                         "description": ""
                     })}
+                    
                 />
             )}
         </div>
