@@ -56,9 +56,15 @@ async function getAll() {
 
 }
 
+async function getBusinessById(id){
+    return await Business.findById(id).select('-hashedPassword').populate('purchases');
+}
+
+
 module.exports = {
     register,
     logout,
     blacklist,
     getAll,
+    getBusinessById,
 };

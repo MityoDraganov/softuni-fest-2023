@@ -99,10 +99,17 @@ function getAll() {
     return User.find({}).select('-hashedPassword');
 }
 
+async function getUserById(id){
+    return await User.findById(id).select('-hashedPassword').populate('purchases');
+}
+
+
+
 module.exports = {
     register,
     login,
     logout,
     blacklist,
     getAll,
+    getUserById
 };

@@ -14,6 +14,8 @@ const businessSchema = new Schema({
         }
     },
     hashedPassword: { type: String, required: true },
+    subscriptions : [{ type: Schema.Types.ObjectId, ref: 'Product' }],
+    purchases : [{ type: Schema.Types.ObjectId, ref: 'Product' }],
 });
 
 businessSchema.index(

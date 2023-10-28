@@ -27,8 +27,6 @@ async function createSession(product) {
 }
 
 async function createSubscriptionSession(product) {
-    // const price = await createProduct(product.name, product.price)
-    // const price = await createProduct(product.name, product.price)
     const priceId = product.subscriptionId;
     if(!priceId) throw new Error("No subscriptionId found");
     const session = await stripe.checkout.sessions.create({

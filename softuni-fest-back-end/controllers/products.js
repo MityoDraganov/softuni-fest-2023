@@ -100,8 +100,8 @@ router.delete('/delete/:id', isBusiness(), objectIdValidator(), async (req, res)
             res.status(403).json({ message: 'You are not allowed to delete this record' });
             return;
         }
-        const result = await deleteById(req.params.id);
-        res.send(JSON.stringify(result)).status(200);
+        await deleteById(req.params.id);
+        res.status(200).json({ message: "Deleted" });
     } catch (err) {
         const error = mapErrors(err);
         res.status(400).json({ message: error });
