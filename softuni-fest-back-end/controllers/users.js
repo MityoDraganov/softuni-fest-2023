@@ -71,7 +71,6 @@ router.get('/purchases/:id', async (req, res) => {
         return;
     }
     const purchases = await getPurchaseHistory(req.params.id);
-    console.log(purchases);
     res.json(purchases);
 });
 

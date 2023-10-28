@@ -32,6 +32,7 @@ const Profile = () => {
                         <p>Description: {purchase?.product.description}</p>
                         <p>Price: ${purchase?.product.price}</p>
                         <p>Paid With: {purchase?.paidWith}</p>
+                        <p>Purchase Date: {new Date(purchase?.purchaseDate).toLocaleString()}</p>
                     </li>
                 ))}
             </ul>
