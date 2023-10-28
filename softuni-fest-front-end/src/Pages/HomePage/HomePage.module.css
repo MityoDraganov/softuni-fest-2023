@@ -45,3 +45,7 @@ p {
     font-size: 16px;
 }
 
+.headerImage {
+    max-height: 300px;
+    object-fit: cover;
+  }
