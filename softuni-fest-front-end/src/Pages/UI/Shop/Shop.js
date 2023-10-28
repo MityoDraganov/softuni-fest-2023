@@ -24,19 +24,27 @@ export const Shop = () => {
         getProducts()
     }, [])
 
+    const filteredProducts = products.filter((product) => {
+        return product.name.toLowerCase().includes(searchValue.toLowerCase());
+    });
+
     return(
-        <div>
+        <div className={styles["container"]}>
             <h1>Shop rendered</h1>
+            <div className={styles["search-container"]}>
+
+
             <Search 
                 onInputChange={onChangeHandler}
                 searchValue={searchValue}
             />
             
             <ul>
-                {products.map((product, index) => (
+                {searchValue && filteredProducts.map((product, index) => (
                     <li key={index}>{product.name}</li> 
                 ))}
             </ul>
+            </div>
 
         </div>
     )
