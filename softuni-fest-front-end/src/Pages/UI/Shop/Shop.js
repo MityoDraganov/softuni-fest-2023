@@ -67,23 +67,31 @@ export const Shop = () => {
 
             <div className={styles["products-container"]}>
                 {searchValue !== "" ? (
-                    filteredProducts.map((product) => (
-                        <Product
-                            key={product._id}
-                            product={product}
-                            openModal={() => setSelectedProduct(product)}
-                            selectedProduct={selectedProduct}
-                        />
-                    ))
+                    filteredProducts.length > 0 ? (
+                        filteredProducts.map((product) => (
+                            <Product
+                                key={product._id}
+                                product={product}
+                                openModal={() => setSelectedProduct(product)}
+                                selectedProduct={selectedProduct}
+                            />
+                        ))
+                    ) : (
+                        <p style={{"textAlign" : "center"}}>No products found</p>
+                    )
                 ) : (
-                    products.map((product) => (
-                        <Product
-                            key={product._id}
-                            product={product}
-                            openModal={() => setSelectedProduct(product)}
-                            selectedProduct={selectedProduct}
-                        />
-                    ))
+                    products.length > 0 ? (
+                        products.map((product) => (
+                            <Product
+                                key={product._id}
+                                product={product}
+                                openModal={() => setSelectedProduct(product)}
+                                selectedProduct={selectedProduct}
+                            />
+                        ))
+                    ) : (
+                        <p style={{"textAlign" : "center"}}>No products found</p>
+                    )
                 )}
             </div>
 
