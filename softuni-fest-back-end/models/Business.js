@@ -14,7 +14,12 @@ const businessSchema = new Schema({
     hashedPassword: { type: String, required: true },
     purchases: [
         {
-            product: { type: Schema.Types.ObjectId, ref: 'Product' },
+            // product: { type: Schema.Types.ObjectId, ref: 'Product' },
+            product: {
+                name: { type: String, required: [true, 'Name is required'] },
+                description: { type: String, required: true, minlength: [10, 'Description must be at least 10 characters long'] },
+                price: { type: Number, required: true },
+            },
             paidWith: { type: String},
             purchaseDate: { type: Date, default: Date.now }
         }
