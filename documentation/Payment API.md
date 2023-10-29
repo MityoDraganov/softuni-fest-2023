@@ -8,6 +8,8 @@ Endpoints:
 
 - `POST /pay/:id` - Stripe checkout
 - `POST /pay/coinbase/:id` - Coinbase charge
+- `POST /stripe-webhook` - Stripe webhook
+- `POST /coinbase-webhook` - Coinbase webhook
 - `POST /pay/opennode/:id` - OpenNode charge (commented out)
 
 ## Stripe Payments
@@ -28,7 +30,7 @@ POST /pay/:id
 1. Receive Checkout `session` object
 2. Redirect user to `session.url` 
 3. User enters payment details on Stripe page
-4. User redirected back to your `success_url`
+4. User redirected back to `success_url`
 
 ## Coinbase Payments 
 
@@ -43,10 +45,6 @@ POST /pay/coinbase/:id
 - Charge contains price, description, redirect URL
 - Redirects to Coinbase hosted checkout
 
-**Webhooks:**
-
-- Verifies webhook signature
-- Handles `charge:confirmed` and `charge:failed` events  
 
 ## OpenNode Payments
 
@@ -60,3 +58,8 @@ POST /pay/opennode/:id
 - Calls `createCharge()` to make Charge request
 - Returns checkout URL to redirect user to
 - Would need webhook handling
+
+## Webhooks:
+
+- Verifies webhook signature
+- Handles `charge:confirmed` and `charge:failed` events  

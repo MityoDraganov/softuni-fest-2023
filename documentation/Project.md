@@ -1,82 +1,61 @@
-# Payment Service App
+# Payment Service App APIs
 
-## Overview
+This app allows businesses to sell products and receive payments, while customers can purchase products.
 
-Payment service allowing businesses to sell products and receive payments. Customers can purchase products via Stripe or Coinbase.
-
-Built with:
-
-- Node/Express backend restful API
-- React front-end
-- MongoDB database
-
-## Endpoints
-
-**Backend API**
-
-Documented APIs:
+## Endpoints Summary
 
 - User Authentication
 - Business Authentication
-- Products
-- Payments 
-
-**Front-end Routes**
-
-- `/` - Home page
-- `/users/register` - User sign up 
-- `/users/login` - User login
-- `/users/shop` - Products listing
-- `/users/shop/:id` - Single product 
-- `/business/register` - Business sign up
-- `/business/products` - Business product management
-- `/learn-more` - About page
-- `/payment-successful` - Payment confirmation
+- Products API
+- Payments API
 
 ## User Authentication
 
-Register, login, logout endpoints. 
+Endpoints for registering, logging in, and logging out users. Users have a first name, last name, email, and password.
 
-Returns access token on register/login.
+On successful register or login, an access token is returned for authentication.
 
-## Business Authentication 
+## Business Authentication
 
-Register, login, logout endpoints.
+Similar endpoints for business accounts. Businesses have a company name and email.
 
-Returns access token for business user.
+Register and login return an access token for authenticated requests.
 
 ## Products API
 
-CRUD API for products. 
+CRUD API for managing products. Protected routes require a valid business access token.
 
-Protected routes require valid business access token.
+Products have a name, description, price, and owner ID linking them to a business.
 
-## Payments API 
+## Payments API
 
-Integrations:
+Handles payments via Stripe and Coinbase.
 
-- Stripe Checkout
-- Coinbase Charges
-- OpenNode (TODO)
+Charges are created by passing the product ID. This initiates the payment flow.
 
-Initiate charges via product ID.
+Webhooks handle payment events from Stripe and Coinbase.
 
 ## Database
 
-MongoDB database with:
+MongoDB database containing:
 
-- Users collection
+- Users collection 
 - Businesses collection
 - Products collection
 
-## React App
+## Front-end
 
-Main routes:
+Built with React. Routes include:
 
-- Home page
-- User and business auth
+- Home 
+- User and business authentication
 - Products listing and detail
-- About page
 - Payment confirmation
 
-Uses context for state management.
+Uses context API for state management.
+
+## Back-end
+
+Node/Express REST API with documented endpoints.
+
+Returns JSON responses and JWT tokens for authentication.

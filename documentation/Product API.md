@@ -5,6 +5,14 @@ All endpoints require:
 
 - `Content-Type: application/json`
 ## Get All Products
+Endpoints:
+
+- `GET /` - Get all avaliable products
+- `GET /:id` - Get product by id
+- `GET /getByOwner/:id` - Get product by its owner id
+- `POST /create` - Create new product
+- `PUT /edit/:id` - Edit existing product
+- `DELETE /delete/:id` - Delete existing product
 
 **Endpoint:**
 
@@ -160,4 +168,8 @@ DELETE /products/delete/:id
 
 **Response:**
 
-204 No Content
+```json
+{
+  "message": "Deleted",
+}
+```
