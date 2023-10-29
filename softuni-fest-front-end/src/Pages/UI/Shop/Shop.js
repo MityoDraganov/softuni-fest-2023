@@ -77,7 +77,7 @@ export const Shop = () => {
                             />
                         ))
                     ) : (
-                        <p style={{"textAlign" : "center"}}>No products found</p>
+                        <p className={styles["no-products"]}>No products found</p>
                     )
                 ) : (
                     products.length > 0 ? (
@@ -90,7 +90,7 @@ export const Shop = () => {
                             />
                         ))
                     ) : (
-                        <p style={{"textAlign" : "center"}}>No products found</p>
+                        <p className={styles["no-products"]}>No products found</p>
                     )
                 )}
             </div>
