@@ -24,12 +24,10 @@ export const ShopModal = ({ product, closeModal }) => {
     const handleStripePayment = async () => {
         const response = await stripeCheckout(product._id)
         window.location.href = response.url;
-        console.log(response);
     }
     const handleCoinbasePayment = async () => {
         const response = await coinbaseCheckout(product._id)
         window.location.href = response.url;
-        console.log(response);
     }
 
 

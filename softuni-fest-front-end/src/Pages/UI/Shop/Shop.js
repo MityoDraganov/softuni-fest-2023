@@ -36,16 +36,13 @@ export const Shop = () => {
 
     const getProducts = async () => {
         const data = await getAllProducts()
-        console.log(data);
         setProducts(data)
     }
 
     const getProductByIdFunc = async (id) => {
         if (id) {
             const data = await getProductById(id)
-            console.log(data);
             setSelectedProduct(data)
-            // to do remove the product id from the url
         }
     }
 

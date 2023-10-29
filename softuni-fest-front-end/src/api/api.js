@@ -3,7 +3,6 @@ const host = 'http://localhost:3030'
 // const host = process.env.NODE_ENV === 'development' ? "http://localhost:3030/": "https://quiz-app-back-end.vercel.app/"
 
 const request = async (method, url, data) => {
-    console.log(host + url + method)
     const options = {
         method,
         headers: {
@@ -27,10 +26,7 @@ const request = async (method, url, data) => {
     }
 
     try {
-        console.log("here");
         const res = await fetch(host + url, options);
-        console.log("down here");
-        console.log(res);
         const data = await res.json();
         if (!res.ok) {
             throw new Error(data.message);
@@ -40,7 +36,6 @@ const request = async (method, url, data) => {
         }
         return data;
     } catch (error) {
-        console.log("errored here? <- api ->");
         console.log(error.message);
         throw new Error(error.message);
     }

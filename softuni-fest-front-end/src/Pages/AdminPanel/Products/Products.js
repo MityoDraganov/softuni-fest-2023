@@ -35,7 +35,6 @@ export const Products = () => {
                 ...product,
                 subscription: product.priceId !== null
             }));
-            console.log(updatedData);
             setProducts(updatedData);
         } catch (error) {
             console.error(error);
@@ -59,7 +58,6 @@ export const Products = () => {
         e.preventDefault();
     
         try {
-            console.log(values.subscription);
             const parsedPrice = parseFloat(values.price);
             const data = await createProduct({ ...values, price: parsedPrice });
             setProducts((state) => [...state, data])
@@ -76,7 +74,6 @@ export const Products = () => {
         try {
             const parsedPrice = parseFloat(values.price);
             const editedProduct = await editProduct(productId, {...values, price: parsedPrice});
-            console.log(editedProduct);
     
             if ('priceId' in editedProduct && editedProduct.priceId !== null) {
                 editedProduct.subscription = true;
