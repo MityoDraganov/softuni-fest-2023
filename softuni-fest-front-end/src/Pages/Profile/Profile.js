@@ -25,18 +25,22 @@ const Profile = () => {
 
             <h2>Your Purchases</h2>
 
-            <ul className={styles.purchases}>
-                {purchases?.map(purchase => (
-                    <li key={purchase?.product._id} className={styles.purchase}>
-                        <p>Name: {purchase?.product.name}</p>
-                        <p>Description: {purchase?.product.description}</p>
-                        <p>Price: ${purchase?.product.price}</p>
-                        <p>Paid With: {purchase?.paidWith}</p>
-                        <p>Purchase Date: {new Date(purchase?.purchaseDate).toLocaleString()}</p>
-                        {purchase?.product.priceId !== null && <p className={styles.subscription}>Subscription</p>}
-                    </li>
-                ))}
-            </ul>
+            {purchases?.length === 0 ? (
+                <p className={styles.purchases}>No purchases yet.</p>
+            ) : (
+                <ul className={styles.purchases}>
+                    {purchases?.map(purchase => (
+                        <li key={purchase?.product._id} className={styles.purchase}>
+                            <p>Name: {purchase?.product.name}</p>
+                            <p>Description: {purchase?.product.description}</p>
+                            <p>Price: ${purchase?.product.price}</p>
+                            <p>Paid With: {purchase?.paidWith}</p>
+                            <p>Purchase Date: {new Date(purchase?.purchaseDate).toLocaleString()}</p>
+                            {purchase?.product.priceId !== null && <p className={styles.subscription}>Subscription</p>}
+                        </li>
+                    ))}
+                </ul>
+            )}
 
             <a href="/" className={styles.button}>
                 Return to Home
