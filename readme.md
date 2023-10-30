@@ -1,8 +1,12 @@
 # Payment Service App
 
-##📊
-[Final results - Лист1.pdf]
-(https://github.com/MityoDraganov/softuni-fest-2023/files/13210116/Final.results.-.1.pdf)
+## 📊
+Final results
+<br>
+https://github.com/MityoDraganov/softuni-fest-2023/files/13210116/Final.results.-.1.pdf
+<br>
+<br>
+
 ### Certificates
 <br>
 Kamen Kanev
