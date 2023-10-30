@@ -8,7 +8,7 @@ https://github.com/MityoDraganov/softuni-fest-2023/files/13210116/Final.results.
 <br>
 
 ### Certificates
-<br>
+
 Kamen Kanev
 <br>
 https://github.com/MityoDraganov/softuni-fest-2023/assets/106108077/00290a85-ca04-41cd-ad86-0d4225a07547
