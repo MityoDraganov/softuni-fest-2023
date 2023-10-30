@@ -9,7 +9,8 @@
 <br>
 [Mityo Draganov](https://github.com/MityoDraganov/softuni-fest-2023/assets/106108077/4a8e89f2-314b-4bf5-8281-8eef8577c6d2)
 <br>
-[Stefan Todorov](https://github.com/MityoDraganov/softuni-fest-2023/assets/106108077/06fb13a8-6546-4120-93e8-c23001d0dec0)
+![Stefan Todorov](https://github.com/MityoDraganov/softuni-fest-2023/assets/106108077/160c468d-3e0b-4e5b-95ea-db02eaff6e60)
+
 <br>
 <br>
 
