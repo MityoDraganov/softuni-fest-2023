@@ -1,7 +1,7 @@
 # Payment Service App
 
-## 📊
-[Final Results](https://github.com/MityoDraganov/softuni-fest-2023/files/13210116/Final.results.-.1.pdf)<br>
+## 📊 Final Results
+[Results PDF](https://github.com/MityoDraganov/softuni-fest-2023/files/13210116/Final.results.-.1.pdf)<br>
 
 # 📋 Certificates
 
